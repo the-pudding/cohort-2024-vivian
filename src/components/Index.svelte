@@ -3,10 +3,14 @@
 	import { browser } from "$app/environment";
 	import Scrolly from "$components/helpers/Scrolly.svelte";
 	import viewport from "$stores/viewport.js";
+	// import Cat.svelte;
 	const copy = getContext("copy");
 
 	let scrollyValue;
 	let figureText = "";
+
+	// let components = { Cat };
+	// let currentFigureComponent;
 
 	function updateScrolly() {
 		if (scrollyValue === undefined) return;
@@ -14,6 +18,7 @@
 		const id = document.querySelector(selector).getAttribute("data-id");
 		// copy.body.section[1].findIndex(scrollyValue)
 		figureText = id;
+		// currentFigureComponent = components[id];
 	}
 
 	$: if (browser) updateScrolly(scrollyValue);
@@ -24,6 +29,7 @@
 		{#if steps}
 			<figure>
 				<p>{figureText}</p>
+				<!-- <svelte:component this={currentFigureComponent} /> -->
 			</figure>
 			<Scrolly bind:value={scrollyValue}>
 				{#each steps as { id, text }, i}
