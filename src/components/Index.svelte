@@ -3,14 +3,15 @@
 	import { browser } from "$app/environment";
 	import Scrolly from "$components/helpers/Scrolly.svelte";
 	import viewport from "$stores/viewport.js";
-	// import Cat.svelte;
+	// import Cat from "$components/Cat.svelte";
+	import IPA from "$components/IPA.svelte";
 	const copy = getContext("copy");
 
 	let scrollyValue;
 	let figureText = "";
 
-	// let components = { Cat };
-	// let currentFigureComponent;
+	let components = { IPA };
+	let currentFigureComponent;
 
 	function updateScrolly() {
 		if (scrollyValue === undefined) return;
@@ -18,18 +19,18 @@
 		const id = document.querySelector(selector).getAttribute("data-id");
 		// copy.body.section[1].findIndex(scrollyValue)
 		figureText = id;
-		// currentFigureComponent = components[id];
+		currentFigureComponent = components[id];
 	}
 
 	$: if (browser) updateScrolly(scrollyValue);
 </script>
 
-{#each copy.body as { section, steps }}
+{#each copy.body as { section, hed, steps }}
 	<section id={section}>
 		{#if steps}
 			<figure>
 				<p>{figureText}</p>
-				<!-- <svelte:component this={currentFigureComponent} /> -->
+				<svelte:component this={currentFigureComponent} />
 			</figure>
 			<Scrolly bind:value={scrollyValue}>
 				{#each steps as { id, text }, i}
@@ -41,6 +42,8 @@
 			</Scrolly>
 		{:else}
 			<div class="spacer"></div>
+			<p>{hed}</p>
+			<IPA transcription="miaw"/>
 		{/if}
 	</section>
 {/each}
