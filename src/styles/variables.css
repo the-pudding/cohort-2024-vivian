@@ -4,6 +4,26 @@
  */
 
 :root {
+  /* special project colors: */
+  --ipa-pink: #FF6299;
+  --ipa-pink-50: #FFB7D0;
+  --ipa-orange: #FF9F51;
+  --ipa-orange-50: #FEC698;
+  --ipa-yellow: #F6E600;
+  --ipa-yellow-50: #F7EF78;
+  --ipa-green: #ACED51;
+  --ipa-green-50: #D3F2A9;
+  --ipa-blue: #6BC4FF;
+  --ipa-blue-50: #BDE4FF;
+  --ipa-purple: #BD6BFF;
+  --ipa-purple-50: #E5C5FF;
+  --ipa-indigo: #7F81FF;
+  --ipa-indigo-50: #CACBFF;
+  --ipa-seafoam: #85DEC9;
+  --ipa-brown: #D0A491;
+  --ipa-stone: #E4D8D2;
+
+  /* general colors */
   --category-blue: #4477AA;
   --category-red: #EE6677;
   --category-green: #228833;

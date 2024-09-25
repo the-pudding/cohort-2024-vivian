@@ -18,7 +18,8 @@
 
 	/* presets (used in reset.css) */
 	--border-radius: 2px;
-	--font-body: var(--serif);
+	--font-body: "IBM Plex Sans", serif;
+	--font-ipa: "Charis SIL", serif;
 	--font-form: var(--sans);
 	--color-bg: var(--color-white);
 	--color-fg: var(--color-gray-900);
