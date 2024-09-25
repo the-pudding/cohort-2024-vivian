@@ -60,6 +60,9 @@
     &.pink75-yellow25 {
       background: linear-gradient(to right, var(--ipa-pink) 78%, var(--ipa-yellow) 22%);
     }
+    &.pink50-yellow50 {
+      background: linear-gradient(to right, var(--ipa-pink) 50%, var(--ipa-yellow) 50%);
+    }
   }
   .word {
     &.hindi {
