@@ -27,7 +27,7 @@
     display: grid;
     justify-items: center;
     gap: 0.4em;
-    margin: 2em;
+    margin: 1.25em;
   }
   .ipa-container {
     display: flex;
@@ -35,7 +35,7 @@
     gap: 1.5px;
     font-family: var(--font-ipa);
     font-weight: bold;
-    font-size: 2em;
+    font-size: 28px;
   }
   .ipa-letter {
     height: 1.15em;
@@ -70,13 +70,13 @@
     &.stone {
       background-color: var(--ipa-stone);
     }
-    &.pink50 {
+    &.pink-50 {
       background-color: var(--ipa-pink-50);
     }
-    &.purple50 {
+    &.purple-50 {
       background-color: var(--ipa-purple-50);
     }
-    &.indigo50 {
+    &.indigo-50 {
       background-color: var(--ipa-indigo-50);
     }
     &.pink75-yellow25 {
@@ -90,8 +90,10 @@
     &.hindi {
       font-family: "IBM Plex Sans Devanagari";
     }
+    font-size: 14px;
   }
   .lang {
     color: var(--color-gray-500);
+    font-size: 14px;
 ;  }
 </style>

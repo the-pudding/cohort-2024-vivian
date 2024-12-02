@@ -4,7 +4,7 @@
 	import IPAGrid from "./IPAGrid.svelte";
 	import IPABubbles from "./IPABubbles.svelte";
 
-	let display = "grid"; // "grid" | "bubbles"
+	export let display = "grid"; // "grid" | "bubbles"
 </script>
 
 {#if display === "grid"}

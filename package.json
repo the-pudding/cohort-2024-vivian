@@ -40,6 +40,7 @@
 	},
 	"browserslist": "> 0.5%, last 4 versions, not ie <= 11, not ie_mob <= 11",
 	"dependencies": {
+		"d3-force": "^3.0.0",
 		"svelte-add": "^2.7.3"
 	}
 }

@@ -25,7 +25,7 @@
 		figureText = id;
 		currentFigureComponent = components[id];
 		currentFigureComponentProps = body.scrolly.steps[scrollyValue].props;
-		console.log(currentFigureComponentProps);
+		// console.log(currentFigureComponentProps);
 	}
 
 	$: if (browser) updateScrolly(scrollyValue);
@@ -51,7 +51,7 @@
 
 <section id="scrolly">
 	{#key currentFigureComponent}
-	<figure transition:blur>
+	<figure in:blur={{ delay: 800, duration: 800 }} out:blur={{ duration: 800 }}>
 		<!-- <p class="overlay-text">{figureText}</p> -->
 		<svelte:component this={currentFigureComponent} {...currentFigureComponentProps}/>
 	</figure>
