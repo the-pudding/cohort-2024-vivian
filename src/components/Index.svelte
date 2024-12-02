@@ -6,6 +6,7 @@
 	import viewport from "$stores/viewport.js";
 	import Cat from "$components/Cat.svelte";
 	import Pig from "$components/Pig.svelte";
+	import Duck from "$components/Duck.svelte";
 	const copy = getContext("copy");
 	let body = copy.body;
 	let hedArr = body.intro.hed.split(" ");
@@ -13,16 +14,18 @@
 	// scrolly variables
 	let scrollyValue;
 	let figureText = "";
-	let components = {cat: Cat, pig: Pig};
+	let components = {cat: Cat, pig: Pig, duck: Duck};
 	let currentFigureComponent;
+	let currentFigureComponentProps;
 
 	function updateScrolly() {
 		if (scrollyValue === undefined) return;
 		const selector = `.step:nth-of-type(${scrollyValue + 1})`;
 		const id = document.querySelector(selector).getAttribute("data-id");
-		// copy.body.section[1].findIndex(scrollyValue)
 		figureText = id;
 		currentFigureComponent = components[id];
+		currentFigureComponentProps = body.scrolly.steps[scrollyValue].props;
+		console.log(currentFigureComponentProps);
 	}
 
 	$: if (browser) updateScrolly(scrollyValue);
@@ -50,7 +53,7 @@
 	{#key currentFigureComponent}
 	<figure transition:blur>
 		<!-- <p class="overlay-text">{figureText}</p> -->
-		<svelte:component this={currentFigureComponent} />
+		<svelte:component this={currentFigureComponent} {...currentFigureComponentProps}/>
 	</figure>
 	{/key}
 	<Scrolly bind:value={scrollyValue}>
