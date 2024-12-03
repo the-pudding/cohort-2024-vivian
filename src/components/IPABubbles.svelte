@@ -17,6 +17,11 @@
         if (!bubbleData.find((d) => d.color === letterColor)) {
           // create an object for this color
           let sumLetter = Object.entries(ipaColors).find(([key, value]) => value === letterColor)?.[0];
+          if (sumLetter.includes("2")) {
+            sumLetter = sumLetter.slice(0, -1);
+          } else if (sumLetter === "ʲ") {
+            sumLetter = "y";
+          }
           if (letterColor.includes("pink") && letterColor.includes("yellow")) {
             bubbleData.find((d) => d.color === "pink").count++;
             bubbleData.find((d) => d.color === "yellow").count++;
@@ -55,7 +60,7 @@
     simulation = forceSimulation(bubbleData)
       .force("x", forceX(width / 2).strength(0.05))
       .force("y", forceY(height / 2).strength(0.08))
-      .force("collision", forceCollide(d => d.count * 11))
+      .force("collision", forceCollide(d => d.count * 10 + 12))
       .on("tick", ticked);
 
     const svgElement = select(svg)
@@ -69,7 +74,7 @@
       .attr("class", "node");
 
     node.append("circle")
-      .attr("r", d => d.count * 10) // Scale bubble size
+      .attr("r", d => d.count * 9 + 2) // Scale bubble size
       .attr("fill", d => `var(--ipa-${d.color})`)
       .attr("stroke", d => `var(--ipa-${d.color}-stroke)`)
       .attr("stroke-width", d => `${d.count * 0.05 + 1}px`);
@@ -78,13 +83,13 @@
       .text(d => d.sumLetter)
       .attr("text-anchor", "middle")
       .attr("dominant-baseline", "middle")
-      .attr("font-size", d => `${d.count * 6 + 8}px`)
+      .attr("font-size", d => `${d.count * 6 + 6}px`)
       .attr("font-family", "var(--font-ipa)")
       .attr("font-weight", "bold");
 
     node.append("text")
-      .html(d => `<tspan>${d.count}</tspan> LANGUAGES`)
-      .attr("y", d => d.count * 10 + 24)
+      .html(d => d.count < 6 ? `<tspan>${d.count}</tspan>` : `<tspan>${d.count}</tspan> LANGUAGES`)
+      .attr("y", d => d.count * 9.5 + 14)
       .attr("text-anchor", "middle")
       .attr("font-size", "12px")
       .attr("fill", "var(--color-gray-700)");
