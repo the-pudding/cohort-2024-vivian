@@ -2,11 +2,12 @@
   import IPA from "$components/IPA.svelte";
   export let ipaObjects;
   export let ipaColors;
+	export let animal;
 </script>
 
 <div class="ipa-grid">
 	{#each ipaObjects as ipaObj}
-	<IPA ipa={ipaObj.ipa} word={ipaObj.word} lang={ipaObj.lang} colors={ipaColors} />
+	<IPA ipa={ipaObj.ipa} word={ipaObj.word} lang={ipaObj.lang} colors={ipaColors} {animal}/>
 	{/each}
 </div>
 

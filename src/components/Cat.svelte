@@ -8,7 +8,7 @@
 </script>
 
 {#if display === "grid"}
-	<IPAGrid ipaObjects={copy.animals.cat} ipaColors={copy.ipaColors.cat} />
+	<IPAGrid ipaObjects={copy.animals.cat} ipaColors={copy.ipaColors.cat} animal="cat"/>
 {:else if display === "bubbles"}
-	<IPABubbles ipaObjects={copy.animals.cat} ipaColors={copy.ipaColors.cat} />
+	<IPABubbles ipaObjects={copy.animals.cat} ipaColors={copy.ipaColors.cat}/>
 {/if}

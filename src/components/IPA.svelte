@@ -3,12 +3,18 @@
   export let word;
   export let lang;
   export let colors;
+  export let animal;
 
   let letters = ipa.split(/(?<![ˈ͡])(?![̌ːɲ\d])/);
 
+  function playIPAAudio(audioSrc) {
+    const audio = new Audio(audioSrc);
+    audio.play();
+  }
+
 </script>
 
-<div class="ono-container">
+<div class="ono-container" on:click={() => playIPAAudio(`audio/${animal}-${lang}.mp3`)}>
   <div class="word {lang}">{word}</div>
   <div class="ipa-container">
     <div>[</div>
@@ -28,6 +34,7 @@
     justify-items: center;
     gap: 0.4em;
     margin: 1.25em;
+    cursor: pointer;
   }
   .ipa-container {
     display: flex;

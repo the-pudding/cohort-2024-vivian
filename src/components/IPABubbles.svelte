@@ -35,8 +35,6 @@
     }
   }
 
-  $: console.log(bubbleData);
-
   let svg;
   let width;
   let height;
