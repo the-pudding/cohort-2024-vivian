@@ -92,3 +92,7 @@ h5 {
 h6 {
 	font-size: var(--20px, 20px);
 }
+
+.ipa-chart-title {
+	font-weight: bold;
+}

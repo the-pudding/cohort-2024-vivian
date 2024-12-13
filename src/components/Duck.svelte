@@ -10,5 +10,5 @@
 {#if display === "grid"}
 	<IPAGrid ipaObjects={copy.animals.duck} ipaColors={copy.ipaColors.duck} animal="duck"/>
 {:else if display === "bubbles"}
-	<IPABubbles ipaObjects={copy.animals.duck} ipaColors={copy.ipaColors.duck} />
+	<IPABubbles ipaObjects={copy.animals.duck} ipaColors={copy.ipaColors.duck} animal="duck"/>
 {/if}

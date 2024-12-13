@@ -5,6 +5,7 @@
 	export let animal;
 </script>
 
+<p class="ipa-chart-title">International Phonetic Alphabet (IPA) transcriptions of {animal} sounds in 21 languages</p>
 <div class="ipa-grid">
 	{#each ipaObjects as ipaObj}
 	<IPA ipa={ipaObj.ipa} word={ipaObj.word} lang={ipaObj.lang} colors={ipaColors} {animal}/>

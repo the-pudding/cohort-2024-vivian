@@ -4,6 +4,7 @@
 
   export let ipaObjects;
   export let ipaColors;
+  export let animal
 
   let bubbleData = [];
 
@@ -99,6 +100,7 @@
 
 </script>
 
+<p class="ipa-chart-title">Phoneme groups occurences of {animal} sounds across 21 languages</p>
 <div 
   bind:clientWidth={width}
   bind:clientHeight={height}
