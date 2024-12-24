@@ -1,6 +1,7 @@
 <script>
   import { onMount } from "svelte";
   import { select, forceSimulation, forceX, forceY, forceCollide } from "d3";
+	import { blur } from 'svelte/transition';
 
   export let ipaObjects;
   export let ipaColors;
@@ -40,6 +41,7 @@
   let width;
   let height;
   let container;
+  let bbox;
 
   $: {
     if (svg) {
@@ -66,7 +68,9 @@
       .attr("width", width)
       .attr("height", height);
 
-    const node = svgElement.selectAll("g")
+    const graphGroup = svgElement.append("g");
+
+    const node = graphGroup.selectAll("g")
       .data(bubbleData)
       .enter()
       .append("g")
@@ -95,18 +99,26 @@
 
     function ticked() {
       node.attr("transform", d => `translate(${d.x}, ${d.y})`);
-    }
+    }; 
+
+    setTimeout(() => {
+      bbox = graphGroup.node().getBBox(); // Get bounding box of the graph group
+    }, 1000);
   });
 
 </script>
 
-<p class="ipa-chart-title">Phoneme groups occurences of {animal} sounds across 21 languages</p>
+
 <div 
   bind:clientWidth={width}
   bind:clientHeight={height}
   bind:this={container}
   class="ipa-bubbles">
-  <svg bind:this={svg}></svg>
+  <svg bind:this={svg}>
+    {#if bbox}
+    <text class="ipa-chart-title" x="50%" y={bbox.y - 30} text-anchor="middle" transition:blur>Phoneme groups occurences of {animal} sounds across 21 languages</text>
+    {/if}
+  </svg>
 </div>
 
 <style lang="scss">

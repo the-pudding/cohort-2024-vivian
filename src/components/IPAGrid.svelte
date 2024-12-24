@@ -33,6 +33,6 @@
 		grid-template-columns: repeat(auto-fill, minmax(max(var(--grid-item--min-width), var(--grid-item--max-width)), 1fr));
 		grid-gap: var(--grid-layout-gap);
 		width: 100vw;
-		padding: 3em;
+		padding: 1.5em 3em;
 	}
 </style>
