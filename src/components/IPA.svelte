@@ -2,8 +2,9 @@
   export let ipa;
   export let word;
   export let lang;
-  export let colors;
-  export let animal;
+  export let colors = undefined;
+  export let animal = undefined;
+  export let ipaScale = 1;
 
   let letters = ipa.split(/(?<![ˈ͡])(?![̌ːɲ\d])/);
 
@@ -14,12 +15,15 @@
 
 </script>
 
-<div class="ono-container" on:click={() => playIPAAudio(`audio/${animal}-${lang}.mp3`)}>
-  <div class="word {lang}">{word}</div>
-  <div class="ipa-container">
+<div 
+  class="ono-container {animal && lang && "clickable"} {ipaScale > 1 && "large-gap"}" 
+  on:click={() => animal && lang && playIPAAudio(`audio/${animal}-${lang}.mp3`)}
+>
+  {#if lang}<div class="word {lang}">{word}</div>{/if}
+  <div class="ipa-container" style={`transform:scale(${ipaScale})`}>
     <div>[</div>
     {#each letters as letter}
-      <div class="ipa-letter {colors[letter]}">
+      <div class="ipa-letter {colors && colors[letter]}">
         {letter.replace(/[0-9]/g, '')}
       </div>
     {/each}
@@ -34,8 +38,20 @@
     justify-items: center;
     gap: 0.4em;
     margin: 1.25em;
-    cursor: pointer;
+
+    &.clickable {
+      cursor: pointer;
+    }
+
+    &.large-gap {
+      gap: 1em;
+
+      .ipa-container {
+        gap: 0.5px;
+      }
+    }
   }
+  
   .ipa-container {
     display: flex;
     align-items: center;

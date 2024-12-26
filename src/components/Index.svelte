@@ -7,6 +7,8 @@
 	import Cat from "$components/Cat.svelte";
 	import Pig from "$components/Pig.svelte";
 	import Duck from "$components/Duck.svelte";
+	import IPA from "$components/IPA.svelte";
+
 	const copy = getContext("copy");
 	let body = copy.body;
 	let hedArr = body.intro.hed.split(" ");
@@ -42,8 +44,14 @@
 		</div>
 	</div>
 	<div class="body-content">
-		{#each body.intro.content as content} 
-			<p class="graf">{content.value}</p>
+		{#each body.intro.content as content}
+		 	{#if content.type === "text"}
+			<p class="graf">{@html content.value}</p>
+			{:else if content.type === "component"}
+				{#if content.value === "ipaCatExample"}
+				<div style="padding: 1.5em"><IPA ipa="miaw" word="meow" lang="english" ipaScale=2/></div>
+				{/if}
+			{/if}
 		{/each}
 	</div>
 </section>
@@ -102,7 +110,7 @@
 
 		.hed-back {
 			font-weight: bold;
-			// font-family: "Charis SIL";
+			// font-family: var(--font-ipa);
 			// font-family: "IBM Plex Serif";
 			background-color: var(--ipa-yellow);
 			padding: 0px 4px;
@@ -125,7 +133,7 @@
 	}
 
 	.body-content {
-		width: 32em;
+		width: 40em;
 		margin: auto;
 		.graf:first-of-type::first-letter {
 			font-size: 4em;
@@ -172,5 +180,21 @@
 
 	#outro {
 		padding-bottom: 10em;
+	}
+
+	:global(.inline-ipa) {
+		font-family: var(--font-ipa);	
+		font-weight: bold;
+	}
+
+	:global(.inline-ipa .pink) {
+		background-color: var(--ipa-pink);
+		line-height: 1.1;
+		display: inline-block;
+	}
+	:global(.inline-ipa .yellow) {
+		background-color: var(--ipa-yellow);
+		line-height: 1.1;
+		display: inline-block;
 	}
 </style>
