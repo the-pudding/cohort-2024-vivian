@@ -10,7 +10,7 @@
 <div class="g-ipa-chart-subtitle"><p class="ipa-chart-subtitle">Click a word to hear it aloud</p>{@html volumeIcon}</div>
 <div class="ipa-grid">
 	{#each ipaObjects as ipaObj}
-	<IPA ipa={ipaObj.ipa} word={ipaObj.word} lang={ipaObj.lang} colors={ipaColors} {animal}/>
+	<IPA ipa={ipaObj.ipa} word={ipaObj.word} lang={ipaObj.lang} colors={ipaColors} audioSrc={`${animal}-${ipaObj.lang}`}/>
 	{/each}
 </div>
 

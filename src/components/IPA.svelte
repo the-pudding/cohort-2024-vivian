@@ -1,9 +1,9 @@
 <script>
   export let ipa;
-  export let word;
+  export let word = undefined;
   export let lang;
   export let colors = undefined;
-  export let animal = undefined;
+  export let audioSrc = undefined
   export let ipaScale = 1;
 
   let letters = ipa.split(/(?<![ˈ͡])(?![̌ːɲ\d])/);
@@ -15,11 +15,13 @@
 
 </script>
 
+<!-- svelte-ignore a11y-no-static-element-interactions -->
 <div 
-  class="ono-container {animal && lang && "clickable"} {ipaScale > 1 && "large-gap"}" 
-  on:click={() => animal && lang && playIPAAudio(`audio/${animal}-${lang}.mp3`)}
+  class="ono-container {audioSrc && "clickable"} {ipaScale > 1 && `scale-${ipaScale}`} {!colors && "no-color"}" 
+  on:click={() => audioSrc && playIPAAudio(`audio/${audioSrc}.mp3`)}
+  on:keydown={() => audioSrc && playIPAAudio(`audio/${audioSrc}.mp3`)}
 >
-  {#if lang}<div class="word {lang}">{word}</div>{/if}
+  {#if lang && word}<div class="word {lang}">{word}</div>{/if}
   <div class="ipa-container" style={`transform:scale(${ipaScale})`}>
     <div>[</div>
     {#each letters as letter}
@@ -29,7 +31,7 @@
     {/each}
     <div>]</div>
   </div>
-  <div class="lang">{lang.toUpperCase()}</div>
+  {#if lang}<div class="lang">{lang.toUpperCase()}</div>{/if}
 </div>
 
 <style lang="scss">
@@ -43,12 +45,19 @@
       cursor: pointer;
     }
 
-    &.large-gap {
-      gap: 1em;
+    &.scale-2 {
+      gap: 1.5em;
 
-      .ipa-container {
-        gap: 0.5px;
+      &.no-color {
+        gap: 1em;
+        .ipa-container {
+          gap: 0.5px;
+        }
       }
+    }
+
+    &.scale-2\.5 {
+      gap: 2em;
     }
   }
   

@@ -116,7 +116,7 @@
   class="ipa-bubbles">
   <svg bind:this={svg}>
     {#if bbox}
-    <text class="ipa-chart-title" x="50%" y={bbox.y - 30} text-anchor="middle" transition:blur>Phoneme groups occurences of {animal} sounds across 21 languages</text>
+    <text class="ipa-chart-title" x="50%" y={bbox.y - 30} text-anchor="middle" transition:blur>Number of phone group occurences in {animal} sounds across 21 languages</text>
     {/if}
   </svg>
 </div>

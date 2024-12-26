@@ -60,7 +60,7 @@
 
 <section id="scrolly">
 	{#key currentFigureComponent}
-	<figure in:blur={{ delay: 800, duration: 800 }} out:blur={{ duration: 800 }}>
+	<figure in:blur={{ delay: 600, duration: 600 }} out:blur={{ duration: 600 }}>
 		<svelte:component this={currentFigureComponent} {...currentFigureComponentProps}/>
 	</figure>
 	{/key}
@@ -68,7 +68,7 @@
 		{#each body.scrolly.steps as { id, text }, i}
 			{@const active = scrollyValue === i}
 			<div data-id={id} class="step" class:active>
-				<p class="scrolly-text">{text}</p>
+				<p class="scrolly-text">{@html text}</p>
 			</div>
 		{/each}
 	</Scrolly>
@@ -189,16 +189,32 @@
 	:global(.inline-ipa) {
 		font-family: var(--font-ipa);	
 		font-weight: bold;
+		white-space: nowrap;
 	}
 
-	:global(.inline-ipa .pink) {
+	:global(.highlight-pink) {
 		background-color: var(--ipa-pink);
 		line-height: 1.1;
 		display: inline-block;
+		padding: 0 1px;
 	}
-	:global(.inline-ipa .yellow) {
+	:global(.highlight-yellow) {
 		background-color: var(--ipa-yellow);
 		line-height: 1.1;
 		display: inline-block;
+		padding: 0 1px;
+	}
+
+	:global(.highlight-blue) {
+		background-color: var(--ipa-blue);
+		line-height: 1.1;
+		display: inline-block;
+		padding: 0 1px;
+	}
+	:global(.highlight-purple) {
+		background-color: var(--ipa-purple);
+		line-height: 1.1;
+		display: inline-block;
+		padding: 0 1px;
 	}
 </style>

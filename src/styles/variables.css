@@ -5,8 +5,8 @@
 
 :root {
   /* special project colors: */
-  --ipa-pink: #FF6299;
-  --ipa-pink-stroke: #EF2C70;
+  --ipa-pink: #ff6da0;
+  --ipa-pink-stroke: #f33678;
   --ipa-pink-50: #FFB7D0;
   --ipa-pink-50-stroke: #FF9ABD;
   --ipa-orange: #FF9F51;
@@ -21,8 +21,8 @@
   --ipa-blue: #6BC4FF;
   --ipa-blue-stroke: #1FA5FF;
   --ipa-blue-50: #BDE4FF;
-  --ipa-purple: #BD6BFF;
-  --ipa-purple-stroke: #A341F4;
+  --ipa-purple: #c37bff;
+  --ipa-purple-stroke: #a94df5;
   --ipa-purple-50: #E5C5FF;
   --ipa-purple-50-stroke:#D9ABFF;
   --ipa-indigo: #7F81FF;
