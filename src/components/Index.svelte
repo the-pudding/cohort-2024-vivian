@@ -17,7 +17,7 @@
 	let scrollyValue;
 	let figureText = "";
 	let components = {cat: Cat, pig: Pig, duck: Duck};
-	let currentFigureComponent;
+	let currentFigureComponent = components["cat"];
 	let currentFigureComponentProps;
 
 	function updateScrolly() {
@@ -25,7 +25,9 @@
 		const selector = `.step:nth-of-type(${scrollyValue + 1})`;
 		const id = document.querySelector(selector).getAttribute("data-id");
 		figureText = id;
+		// if (currentFigureComponent != components[id]) {
 		currentFigureComponent = components[id];
+		// } 
 		currentFigureComponentProps = body.scrolly.steps[scrollyValue].props;
 	}
 
@@ -158,12 +160,14 @@
 	p.scrolly-text {
 		padding: 1em;
 		border: 2px solid var(--color-fg);
-		width: min-content;
-		white-space: nowrap;
+		min-width: min-content;
+		// white-space: nowrap;
 		z-index: var(--z-overlay);
 		position: relative;
 		background-color: var(--color-bg);
 		box-shadow: 0 4px 16px var(--color-gray-200);
+		max-width: 32em;
+		text-align: center;
 	}
 
 	figure {

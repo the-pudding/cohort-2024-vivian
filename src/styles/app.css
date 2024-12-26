@@ -98,3 +98,9 @@ h6 {
 	font-family: "IBM Plex Serif";
 	font-size: 1.2rem;
 }
+
+.ipa-chart-subtitle {
+	color: var(--color-gray-400);
+	margin: 0;
+	font-size: 15px;
+}
