@@ -59,6 +59,12 @@
     &.scale-2\.5 {
       gap: 2em;
     }
+    &.scale-3 {
+      gap: 2.5em;
+    }
+    &.scale-1\.25 {
+      gap: 0.6em;
+    }
   }
   
   .ipa-container {

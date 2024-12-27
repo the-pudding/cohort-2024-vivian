@@ -217,4 +217,22 @@
 		display: inline-block;
 		padding: 0 1px;
 	}
+	:global(.highlight-green) {
+		background-color: var(--ipa-green);
+		line-height: 1.1;
+		display: inline-block;
+		padding: 0 1px;
+	}
+	:global(.highlight-orange) {
+		background-color: var(--ipa-orange);
+		line-height: 1.1;
+		display: inline-block;
+		padding: 0 1px;
+	}
+	:global(.highlight-indigo) {
+		background-color: var(--ipa-indigo);
+		line-height: 1.1;
+		display: inline-block;
+		padding: 0 1px;
+	}
 </style>

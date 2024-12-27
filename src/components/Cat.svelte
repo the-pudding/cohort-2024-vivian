@@ -24,26 +24,26 @@
 	</div>
 {:else if display === "grid-detail-2"}
 	<div class="two-col small-gap">
-		<div><IPA ipa="miau" word=" " lang="english + 13 others" colors={copy.ipaColors.cat} audioSrc="cat-english" ipaScale=2.5/></div>
-		<div><IPA ipa="ɲaː" word="ニャー" lang="japanese" colors={copy.ipaColors.cat} audioSrc="cat-japanese" ipaScale=2.5/></div>
+		<div><IPA ipa="miau" word=" " lang="english + 14 others" colors={copy.ipaColors.cat} audioSrc="cat-english" ipaScale=3/></div>
+		<div><IPA ipa="ɲaː" word="ニャー" lang="japanese" colors={copy.ipaColors.cat} audioSrc="cat-japanese" ipaScale=3/></div>
 	</div>
 {:else if display === "grid-detail-3"}
-{@const ipaObjects = copy.animals.cat.filter((d) => d?.patterns?.includes("detail-3"))}
-<div class="two-col">
-	<div style="padding-left: 9em"><IPA ipa="miau" lang="trend" colors={copy.ipaColors.cat} audioSrc="cat-english" ipaScale=2.5/></div>
-	<div class="ipa-half-grid">
+{@const ipaObjects = copy.animals.cat.filter((d) => d?.patterns?.includes("detail-4"))}
+<div class="two-col smaller-gap">
+	<div style="padding: 2em 0 0 5em"><IPA ipa="miau" lang="english + 14 others" colors={copy.ipaColors.cat} audioSrc="cat-english" ipaScale=2.5/></div>
+	<div class="flex-wrap">
 		{#each ipaObjects as ipaObj}
-		<IPA ipa={ipaObj.ipa} word={ipaObj.word} lang={ipaObj.lang} colors={copy.ipaColors.cat} audioSrc={`cat-${ipaObj.lang}`} ipaScale=0.85/>
+		<div class="flex-child"><IPA ipa={ipaObj.ipa} word={ipaObj.word} lang={ipaObj.lang} colors={copy.ipaColors.cat} audioSrc={`cat-${ipaObj.lang}`} ipaScale=1.25/></div>
 		{/each}
 	</div>
 </div>
 {:else if display === "grid-detail-4"}
-{@const ipaObjects = copy.animals.cat.filter((d) => d?.patterns?.includes("detail-4"))}
-<div class="two-col">
-	<div style="padding-left: 9em"><IPA ipa="miau" lang="trend" colors={copy.ipaColors.cat} audioSrc="cat-english" ipaScale=2.5/></div>
-	<div class="ipa-half-grid">
+{@const ipaObjects = copy.animals.cat.filter((d) => d?.patterns?.includes("detail-3"))}
+<div class="two-col small-gap">
+	<div style="padding: 2em 0 0 8em"><IPA ipa="miau" lang="english + 14 others" colors={copy.ipaColors.cat} audioSrc="cat-english" ipaScale=2.5/></div>
+	<div class="flex-wrap">
 		{#each ipaObjects as ipaObj}
-		<IPA ipa={ipaObj.ipa} word={ipaObj.word} lang={ipaObj.lang} colors={copy.ipaColors.cat} audioSrc={`cat-${ipaObj.lang}`} ipaScale=0.85/>
+		<div class="flex-child"><IPA ipa={ipaObj.ipa} word={ipaObj.word} lang={ipaObj.lang} colors={copy.ipaColors.cat} audioSrc={`cat-${ipaObj.lang}`}/></div>
 		{/each}
 	</div>
 </div>
@@ -58,6 +58,17 @@
 		padding: 1.5em 3em;
 	}
 
+	.flex-wrap {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+
+		.flex-child {
+			flex-basis: 50%;
+			margin: 0;
+		}
+	}
+
 	.two-col {
 		display: flex;
 		align-items: center;
@@ -67,6 +78,11 @@
 		&.small-gap {
 			justify-content: center;
 			gap: 20em;
+		}
+
+		&.smaller-gap {
+			justify-content: center;
+			gap: 16em;
 		}
 	}
 </style>
