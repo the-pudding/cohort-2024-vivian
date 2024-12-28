@@ -60,7 +60,7 @@
 
 <section id="scrolly">
 	{#key currentFigureComponent}
-	<figure in:blur={{ delay: 600, duration: 600 }} out:blur={{ duration: 600 }}>
+	<figure in:blur={{ delay: 500, duration: 1000 }} out:blur={{ duration: 1000}}>
 		<svelte:component this={currentFigureComponent} {...currentFigureComponentProps}/>
 	</figure>
 	{/key}
@@ -77,7 +77,7 @@
 <section id="outro">
 	<div class="body-content">
 		{#each body.outro.content as content} 
-			<p class="graf">{content.value}</p>
+			<p class="graf">{@html content.value}</p>
 		{/each}
 	</div>
 </section>
