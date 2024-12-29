@@ -9,6 +9,12 @@
 
   let bubbleData = [];
 
+  function playIPAAudio(audioSrc) {
+    console.log("clicked");
+    const audio = new Audio(audioSrc);
+    audio.play();
+  }
+
   for (const ipaObj of ipaObjects) {
     const letters = ipaObj.ipa.split(/(?<![ˈ͡])(?![̌ːɲ\d])/);
 
@@ -74,7 +80,9 @@
       .data(bubbleData)
       .enter()
       .append("g")
-      .attr("class", "node");
+      .attr("class", "node")
+      .attr("cursor", "pointer")
+      .on("click", (event, d) => {playIPAAudio(`audio/ipa-${d.sumLetter}.mp3`);})
 
     node.append("circle")
       .attr("r", d => d.count * 9 + 2) // Scale bubble size

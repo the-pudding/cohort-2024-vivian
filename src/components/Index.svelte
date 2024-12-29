@@ -59,8 +59,8 @@
 </section>
 
 <section id="scrolly">
-	{#key currentFigureComponent}
-	<figure in:blur={{ delay: 500, duration: 1000 }} out:blur={{ duration: 1000}}>
+	{#key currentFigureComponentProps}
+	<figure in:blur={{ delay: 400, duration: 800 }} out:blur={{ duration: 800}}>
 		<svelte:component this={currentFigureComponent} {...currentFigureComponentProps}/>
 	</figure>
 	{/key}
@@ -79,6 +79,17 @@
 		{#each body.outro.content as content} 
 			<p class="graf">{@html content.value}</p>
 		{/each}
+	</div>
+</section>
+
+<section id="sources">
+	<div class="body-content">
+		<h3>Sources</h3>
+		<ol>
+			{#each body.sources as source} 
+				<li><a href={source.link}>{source.name}</a></li>
+			{/each}
+		</ol>
 	</div>
 </section>
 
@@ -182,7 +193,7 @@
 		justify-content: center;
 	}
 
-	#outro {
+	#sources {
 		padding-bottom: 10em;
 	}
 
