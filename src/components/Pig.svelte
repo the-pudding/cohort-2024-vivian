@@ -3,6 +3,7 @@
 	const copy = getContext("copy");
 	import IPAGrid from "./IPAGrid.svelte";
 	import IPABubbles from "./IPABubbles.svelte";
+	import IPA from "$components/IPA.svelte";
 
 	export let display = "grid"; // "grid" | "bubbles"
 </script>

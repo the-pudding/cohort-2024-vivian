@@ -28,7 +28,7 @@
 		<div><IPA ipa="ɲaː" word="ニャー" lang="japanese" colors={copy.ipaColors.cat} audioSrc="cat-japanese" ipaScale=3/></div>
 	</div>
 {:else if display === "grid-detail-3"}
-{@const ipaObjects = copy.animals.cat.filter((d) => d?.patterns?.includes("detail-4"))}
+{@const ipaObjects = copy.animals.cat.filter((d) => d?.patterns?.includes("detail-3"))}
 <div class="two-col smaller-gap">
 	<div style="padding: 2em 0 0 5em"><IPA ipa="miau" lang="english + 14 others" colors={copy.ipaColors.cat} audioSrc="cat-english" ipaScale=2.5/></div>
 	<div class="flex-wrap">
@@ -38,7 +38,7 @@
 	</div>
 </div>
 {:else if display === "grid-detail-4"}
-{@const ipaObjects = copy.animals.cat.filter((d) => d?.patterns?.includes("detail-3"))}
+{@const ipaObjects = copy.animals.cat.filter((d) => d?.patterns?.includes("detail-4"))}
 <div class="two-col small-gap">
 	<div style="padding: 2em 0 0 8em"><IPA ipa="miau" lang="english + 14 others" colors={copy.ipaColors.cat} audioSrc="cat-english" ipaScale=2.5/></div>
 	<div class="flex-wrap">
@@ -50,39 +50,4 @@
 {/if}
 
 <style lang="scss">
-	.ipa-half-grid {
-		display: grid;
-		justify-content: center;
-		grid-template-columns: repeat(4, 1fr);
-		grid-gap: 0em;
-		padding: 1.5em 3em;
-	}
-
-	.flex-wrap {
-		display: flex;
-		flex-wrap: wrap;
-		justify-content: center;
-
-		.flex-child {
-			flex-basis: 50%;
-			margin: 0;
-		}
-	}
-
-	.two-col {
-		display: flex;
-		align-items: center;
-		width: 100vw;
-		justify-content: space-around;
-
-		&.small-gap {
-			justify-content: center;
-			gap: 20em;
-		}
-
-		&.smaller-gap {
-			justify-content: center;
-			gap: 16em;
-		}
-	}
 </style>
