@@ -52,7 +52,16 @@
   $: {
     if (svg) {
       // Adjust the SVG size
-      select(svg).attr("width", width).attr("height", height);
+      // select(svg).attr("width", width).attr("height", height);
+      // select(svg).attr("preserveAspectRatio", "xMidYMid meet").attr("viewBox", "0 0 1280 1024")
+      select(svg)
+        .attr("width", width)
+        .attr("height", height);
+        // .attr("width", "100%") // Set SVG to fill the parent container
+        // .attr("height", "100%")
+        // .attr("viewBox", `0 0 ${width} ${height}`) // Define a scalable coordinate system
+        // .attr("viewBox", "0 0 1400 1024")
+        // .attr("preserveAspectRatio", "xMidYMid meet")
 
       // Reconfigure simulation forces on resize
       simulation.force("x", forceX(width / 2).strength(0.05));
@@ -67,12 +76,15 @@
     simulation = forceSimulation(bubbleData)
       .force("x", forceX(width / 2).strength(0.05))
       .force("y", forceY(height / 2).strength(0.08))
-      .force("collision", forceCollide(d => d.count * 10 + 12))
+      .force("collision", forceCollide(d => d.count * 9 + 12))
       .on("tick", ticked);
 
     const svgElement = select(svg)
       .attr("width", width)
       .attr("height", height);
+      // .attr("viewBox", `0 0 ${width} ${height}`) // Define a scalable coordinate system
+      // .attr("viewBox", "0 0 1400 1024")
+      // .attr("preserveAspectRatio", "xMidYMid meet")
 
     const graphGroup = svgElement.append("g");
 
@@ -85,7 +97,7 @@
       .on("click", (event, d) => {playIPAAudio(`audio/ipa-${d.sumLetter}.mp3`);})
 
     node.append("circle")
-      .attr("r", d => d.count * 9 + 2) // Scale bubble size
+      .attr("r", d => d.count * 8 + 2) // Scale bubble size
       .attr("fill", d => `var(--ipa-${d.color})`)
       .attr("stroke", d => `var(--ipa-${d.color}-stroke)`)
       .attr("stroke-width", d => `${d.count * 0.05 + 1}px`);
@@ -100,7 +112,7 @@
 
     node.append("text")
       .html(d => d.count < 6 ? `<tspan>${d.count}</tspan>` : `<tspan>${d.count}</tspan> LANGUAGES`)
-      .attr("y", d => d.count * 9.5 + 14)
+      .attr("y", d => d.count * 8.5 + 16)
       .attr("text-anchor", "middle")
       .attr("font-size", "12px")
       .attr("fill", "var(--color-gray-700)");
@@ -134,10 +146,20 @@
     width: 100%; 
     height: 100vh; 
     overflow: hidden;
+    // display: inline-block;
+    // position: relative;
+    // width: 100%;
+    // padding-bottom: 100%;
+    // vertical-align: top;
+    // overflow: hidden;
   }
   svg {
     display: block;
     margin: 0 auto;
+    // display: inline-block;
+    // position: absolute;
+    // top: 0;
+    // left: 0;
   }
 
   :global(tspan) {

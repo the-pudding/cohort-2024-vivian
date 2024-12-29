@@ -3,7 +3,6 @@
 	import { browser } from "$app/environment";
 	import { blur } from 'svelte/transition';
 	import Scrolly from "$components/helpers/Scrolly.svelte";
-	import viewport from "$stores/viewport.js";
 	import Cat from "$components/Cat.svelte";
 	import Pig from "$components/Pig.svelte";
 	import Duck from "$components/Duck.svelte";
