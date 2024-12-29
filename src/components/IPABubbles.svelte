@@ -28,7 +28,7 @@
           if (sumLetter.includes("2")) {
             sumLetter = sumLetter.slice(0, -1);
           } else if (sumLetter === "ʲ") {
-            sumLetter = "y";
+            sumLetter = "i";
           }
           if (letterColor.includes("pink") && letterColor.includes("yellow")) {
             bubbleData.find((d) => d.color === "pink").count++;
