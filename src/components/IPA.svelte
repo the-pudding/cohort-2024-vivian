@@ -6,7 +6,7 @@
   export let audioSrc = undefined
   export let ipaScale = 1;
 
-  let letters = ipa.split(/(?<![ˈ͡])(?![̌ːɲʲ\d])/);
+  let letters = ipa.split(/(?<![ˈ͡])(?<!r(?=ʲ))(?![̌ːɲ\d])/);
 
   function playIPAAudio(audioSrc) {
     const audio = new Audio(audioSrc);
@@ -122,6 +122,9 @@
     }
     &.pink50-yellow50 {
       background: linear-gradient(to right, var(--ipa-pink) 50%, var(--ipa-yellow) 50%);
+    }
+    &.green75-yellow25 {
+      background: linear-gradient(to right, var(--ipa-green) 78%, var(--ipa-yellow) 22%);
     }
   }
   .word {
