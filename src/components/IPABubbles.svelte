@@ -16,7 +16,7 @@
   }
 
   for (const ipaObj of ipaObjects) {
-    const letters = ipaObj.ipa.split(/(?<![ˈ͡])(?![̌ːɲ\d])/);
+    const letters = ipaObj.ipa.split(/(?<![ˈ͡])(?![̌ːɲʲ\d])/);
 
     for (const letter of letters) {
       let letterColor = ipaColors[letter];
@@ -27,8 +27,8 @@
           let sumLetter = Object.entries(ipaColors).find(([key, value]) => value === letterColor)?.[0];
           if (sumLetter.includes("2")) {
             sumLetter = sumLetter.slice(0, -1);
-          } else if (sumLetter === "ʲ") {
-            sumLetter = "i";
+          } else if (sumLetter === "t") {
+            sumLetter = "tʃ";
           }
           if (letterColor.includes("pink") && letterColor.includes("yellow")) {
             bubbleData.find((d) => d.color === "pink").count++;
@@ -37,6 +37,7 @@
             bubbleData.push({ sumLetter: sumLetter, color: letterColor, count: 1 })
           }
         } else {
+            if (letter === "͡ʃ") { continue; }
             bubbleData.find((d) => d.color === letterColor).count++;
         }
       }

@@ -276,7 +276,11 @@ ol, ul {
 		margin: 0;
 
 		&.third {
-			flex-basis: 33%;
+			flex-basis: 30%;
+		}
+
+		&.fourth {
+			flex-basis: 20%;
 		}
 	}
 }

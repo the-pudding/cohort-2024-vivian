@@ -6,7 +6,7 @@
   export let audioSrc = undefined
   export let ipaScale = 1;
 
-  let letters = ipa.split(/(?<![ˈ͡])(?![̌ːɲ\d])/);
+  let letters = ipa.split(/(?<![ˈ͡])(?![̌ːɲʲ\d])/);
 
   function playIPAAudio(audioSrc) {
     const audio = new Audio(audioSrc);

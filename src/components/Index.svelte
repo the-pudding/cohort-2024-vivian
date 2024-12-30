@@ -208,6 +208,12 @@
 		display: inline-block;
 		padding: 0 1px;
 	}
+	:global(.highlight-pink50) {
+		background-color: var(--ipa-pink-50);
+		line-height: 1.1;
+		display: inline-block;
+		padding: 0 1px;
+	}
 	:global(.highlight-yellow) {
 		background-color: var(--ipa-yellow);
 		line-height: 1.1;
@@ -241,6 +247,18 @@
 	}
 	:global(.highlight-indigo) {
 		background-color: var(--ipa-indigo);
+		line-height: 1.1;
+		display: inline-block;
+		padding: 0 1px;
+	}
+	:global(.highlight-stone) {
+		background-color: var(--ipa-stone);
+		line-height: 1.1;
+		display: inline-block;
+		padding: 0 1px;
+	}
+	:global(.highlight-brown) {
+		background-color: var(--ipa-brown);
 		line-height: 1.1;
 		display: inline-block;
 		padding: 0 1px;
