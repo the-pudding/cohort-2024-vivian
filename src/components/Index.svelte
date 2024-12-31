@@ -16,22 +16,29 @@
 	// scrolly variables
 	let scrollyValue;
 	let components = {cat: Cat, pig: Pig, duck: Duck};
-	let currentFigureComponent = components["cat"];
-	let currentFigureId = "cat";
-	let currentFigureComponentProps = { display: "cover" };
+	let currentFigureComponent;
+	let currentFigureId;
+	let currentFigureComponentProps;
 
 	function updateScrolly() {
-		if (!scrollyValue) { return; }
+		if (scrollyValue === undefined) { 
+
+			currentFigureComponent = undefined;
+			currentFigureId = undefined;
+			currentFigureComponentProps = undefined;
+
+			return; 
+		}
 		const selector = `.step:nth-of-type(${scrollyValue + 1})`;
 		const id = document.querySelector(selector).getAttribute("data-id");
 		currentFigureComponent = components[id];
 		currentFigureId = id;
-		currentFigureComponentProps = body.scrolly.steps[scrollyValue].props;
+		if (currentFigureComponentProps?.display !== body.scrolly.steps[scrollyValue].props?.display) {
+			currentFigureComponentProps = body.scrolly.steps[scrollyValue].props;
+		}
 	}
 
 	$: if (browser) updateScrolly(scrollyValue);
-	// $: console.log(currentFigureId);
-	// $: console.log(currentFigureComponentProps);
 </script>
 
 <section id="intro">
