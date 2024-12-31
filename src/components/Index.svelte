@@ -17,21 +17,21 @@
 	let scrollyValue;
 	let components = {cat: Cat, pig: Pig, duck: Duck};
 	let currentFigureComponent = components["cat"];
-	let currentFigureId = "cat"
+	let currentFigureId = "cat";
 	let currentFigureComponentProps = { display: "cover" };
 
 	function updateScrolly() {
-		if (scrollyValue === undefined) return;
+		if (!scrollyValue) { return; }
 		const selector = `.step:nth-of-type(${scrollyValue + 1})`;
 		const id = document.querySelector(selector).getAttribute("data-id");
-		// if (currentFigureComponent != components[id]) {
 		currentFigureComponent = components[id];
 		currentFigureId = id;
-		// } 
 		currentFigureComponentProps = body.scrolly.steps[scrollyValue].props;
 	}
 
 	$: if (browser) updateScrolly(scrollyValue);
+	// $: console.log(currentFigureId);
+	// $: console.log(currentFigureComponentProps);
 </script>
 
 <section id="intro">
@@ -59,15 +59,19 @@
 </section>
 
 <section id="scrolly">
-	{#if currentFigureComponentProps?.display !== "cover"}
-	<div class="scrolly-overlay" in:blur={{ delay: 400, duration: 800 }} out:blur={{ duration: 800}}>
-		<div class="animal-logo">
-			<img src={`assets/${currentFigureId}-face-logo.png`} width=75 height=75 alt={`${currentFigureId} face doodle`}/>
-			<p class="scrolly-hed">{currentFigureId[0].toUpperCase() + currentFigureId.slice(1)}</p>
+	{#key currentFigureId}
+	<div class="scrolly-overlay-container" in:blur={{ delay: 400, duration: 800 }} out:blur={{ duration: 800 }}>
+		{#if scrollyValue && currentFigureComponentProps?.display !== "cover"}
+		<div class="scrolly-overlay" in:blur={{ delay: 400, duration: 800 }} out:blur={{ duration: 800 }}>
+			<div class="animal-logo">
+				<img src={`assets/${currentFigureId}-face-logo.png`} width=75 height=75 alt={`${currentFigureId} face doodle`}/>
+				<p class="scrolly-hed">{currentFigureId[0].toUpperCase() + currentFigureId.slice(1)}</p>
+			</div>
+			<div class="g-ipa-chart-subtitle"><p class="ipa-chart-subtitle">Click an element to hear it aloud</p>{@html volumeIcon}</div>
 		</div>
-		<div class="g-ipa-chart-subtitle"><p class="ipa-chart-subtitle">Click an element to hear it aloud</p>{@html volumeIcon}</div>
+		{/if}
 	</div>
-	{/if}
+	{/key}
 	{#key currentFigureComponentProps}
 	<figure in:blur={{ delay: 400, duration: 800 }} out:blur={{ duration: 800}}>
 		<svelte:component this={currentFigureComponent} {...currentFigureComponentProps}/>
@@ -206,16 +210,18 @@
 		padding-bottom: 10em;
 	}
 
-	.scrolly-overlay {
-		display: flex;
-		width: 100vw;
+	.scrolly-overlay-container {
 		position: fixed;
 		top: 0;
 		left: 0;
-		padding: 0.5em 1.5em;
 		z-index: 10;
+	}
+
+	.scrolly-overlay {
+		display: flex;
+		width: 100vw;
+		padding: 0.5em 1.5em;
 		justify-content: space-between;
-		// align-items: center;
 	}
 
 	.animal-logo {
