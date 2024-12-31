@@ -80,7 +80,9 @@
 	</div>
 	{/key}
 	{#key currentFigureComponentProps}
-	<figure in:blur={{ delay: 400, duration: 800 }} out:blur={{ duration: 800}}>
+	<figure 
+		in:blur={{ delay: 400, duration: 800 }} out:blur={{ duration: 800}}
+		class={currentFigureComponentProps?.display === "cover" && `${currentFigureId}-background`}>
 		<svelte:component this={currentFigureComponent} {...currentFigureComponentProps}/>
 	</figure>
 	{/key}
@@ -203,14 +205,27 @@
 
 	figure {
 		position: sticky;
-		top: 20px;
+		top: 0;
 		left: 0;
 		width: 100%;
 		height: 100svh;
+		padding-top: 20px;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 		justify-content: center;
+		
+		&.cat-background {
+			background-color: rgba(107, 196, 255, 0.2);
+		}
+
+		&.pig-background {
+			background-color: rgba(243, 54, 120, 0.2);
+		}
+
+		&.duck-background {
+			background-color: rgba(255, 159, 81, 0.2);
+		}
 	}
 
 	#sources {
