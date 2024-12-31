@@ -33,6 +33,9 @@
           if (letterColor.includes("pink") && letterColor.includes("yellow")) {
             bubbleData.find((d) => d.color === "pink").count++;
             bubbleData.find((d) => d.color === "yellow").count++;
+          } else if (letterColor.includes("green") && letterColor.includes("yellow")) {
+            bubbleData.find((d) => d.color === "green").count++;
+            bubbleData.find((d) => d.color === "yellow").count++;
           } else {
             bubbleData.push({ sumLetter: sumLetter, color: letterColor, count: 1 })
           }

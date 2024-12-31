@@ -7,6 +7,7 @@
 	import Pig from "$components/Pig.svelte";
 	import Duck from "$components/Duck.svelte";
 	import IPA from "$components/IPA.svelte";
+	import volumeIcon from "$svg/volume-icon.svg";
 
 	const copy = getContext("copy");
 	let body = copy.body;
@@ -14,18 +15,18 @@
 
 	// scrolly variables
 	let scrollyValue;
-	let figureText = "";
 	let components = {cat: Cat, pig: Pig, duck: Duck};
 	let currentFigureComponent = components["cat"];
-	let currentFigureComponentProps;
+	let currentFigureId = "cat"
+	let currentFigureComponentProps = { display: "cover" };
 
 	function updateScrolly() {
 		if (scrollyValue === undefined) return;
 		const selector = `.step:nth-of-type(${scrollyValue + 1})`;
 		const id = document.querySelector(selector).getAttribute("data-id");
-		figureText = id;
 		// if (currentFigureComponent != components[id]) {
 		currentFigureComponent = components[id];
+		currentFigureId = id;
 		// } 
 		currentFigureComponentProps = body.scrolly.steps[scrollyValue].props;
 	}
@@ -58,6 +59,15 @@
 </section>
 
 <section id="scrolly">
+	{#if currentFigureComponentProps?.display !== "cover"}
+	<div class="scrolly-overlay" in:blur={{ delay: 400, duration: 800 }} out:blur={{ duration: 800}}>
+		<div class="animal-logo">
+			<img src={`assets/${currentFigureId}-face-logo.png`} width=75 height=75 alt={`${currentFigureId} face doodle`}/>
+			<p class="scrolly-hed">{currentFigureId[0].toUpperCase() + currentFigureId.slice(1)}</p>
+		</div>
+		<div class="g-ipa-chart-subtitle"><p class="ipa-chart-subtitle">Click an element to hear it aloud</p>{@html volumeIcon}</div>
+	</div>
+	{/if}
 	{#key currentFigureComponentProps}
 	<figure in:blur={{ delay: 400, duration: 800 }} out:blur={{ duration: 800}}>
 		<svelte:component this={currentFigureComponent} {...currentFigureComponentProps}/>
@@ -67,7 +77,7 @@
 		{#each body.scrolly.steps as { id, text }, i}
 			{@const active = scrollyValue === i}
 			<div data-id={id} class="step" class:active>
-				<p class="scrolly-text">{@html text}</p>
+				{#if text}<p class="scrolly-text">{@html text}</p>{/if}
 			</div>
 		{/each}
 	</Scrolly>
@@ -169,20 +179,20 @@
 
 	p.scrolly-text {
 		padding: 1em;
-		border: 2px solid var(--color-fg);
+		border: 2px solid var(--color-gray-300);
 		min-width: min-content;
 		// white-space: nowrap;
 		z-index: var(--z-overlay);
 		position: relative;
 		background-color: var(--color-bg);
-		box-shadow: 0 4px 16px var(--color-gray-200);
+		box-shadow: 0 4px 16px rgba(135, 135, 135, 0.3);
 		max-width: 32em;
 		text-align: center;
 	}
 
 	figure {
 		position: sticky;
-		top: 0;
+		top: 20px;
 		left: 0;
 		width: 100%;
 		height: 100svh;
@@ -194,6 +204,37 @@
 
 	#sources {
 		padding-bottom: 10em;
+	}
+
+	.scrolly-overlay {
+		display: flex;
+		width: 100vw;
+		position: fixed;
+		top: 0;
+		left: 0;
+		padding: 0.5em 1.5em;
+		z-index: 10;
+		justify-content: space-between;
+		// align-items: center;
+	}
+
+	.animal-logo {
+		display: flex;
+		gap: 0.5em;
+		align-items: center;
+	}
+
+	.scrolly-hed {
+		font-size: 1.75rem;
+		font-family: "IBM Plex Serif";
+		color: var(--color-gray-700);
+	}
+
+	.g-ipa-chart-subtitle {
+		margin: 0 0 20px 12px;
+		display: flex;
+		align-items: center;
+		gap: 4px;
 	}
 
 	:global(.inline-ipa) {

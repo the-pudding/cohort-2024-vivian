@@ -8,7 +8,12 @@
 	export let display = "grid"; // "grid" | "bubbles"
 </script>
 
-{#if display === "grid"}
+{#if display === "cover"}
+	<div class="scrolly-cover">
+		<img src={`assets/cat-face-logo.png`} width=125 height=125 alt={`cat face doodle`}/>
+		<p class="scrolly-cover-hed">Cat</p>
+	</div>
+{:else if display === "grid"}
 	<IPAGrid ipaObjects={copy.animals.cat} ipaColors={copy.ipaColors.cat} animal="cat"/>
 {:else if display === "bubbles"}
 	<IPABubbles ipaObjects={copy.animals.cat} ipaColors={copy.ipaColors.cat} animal="cat"/>

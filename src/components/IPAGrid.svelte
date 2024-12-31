@@ -1,13 +1,11 @@
 <script>
   import IPA from "$components/IPA.svelte";
-	import volumeIcon from "$svg/volume-icon.svg";
   export let ipaObjects;
   export let ipaColors;
 	export let animal;
 </script>
 
 <p class="ipa-chart-title">International Phonetic Alphabet (IPA) transcriptions of {animal} sounds in 21 languages</p>
-<div class="g-ipa-chart-subtitle"><p class="ipa-chart-subtitle">Click a word to hear it aloud</p>{@html volumeIcon}</div>
 <div class="ipa-grid">
 	{#each ipaObjects as ipaObj}
 	<IPA ipa={ipaObj.ipa} word={ipaObj.word} lang={ipaObj.lang} colors={ipaColors} audioSrc={`${animal}-${ipaObj.lang}`}/>
@@ -38,9 +36,4 @@
 		padding: 1.5em 3em;
 	}
 
-	.g-ipa-chart-subtitle {
-		display: flex;
-		align-items: center;
-		gap: 4px;
-	}
 </style>

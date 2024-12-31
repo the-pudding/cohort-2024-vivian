@@ -5,6 +5,7 @@
   export let colors = undefined;
   export let audioSrc = undefined
   export let ipaScale = 1;
+  export let disabled = false;
 
   let letters = ipa.split(/(?<![ˈ͡])(?<!r(?=ʲ))(?![̌ːɲ\d])/);
 
@@ -17,7 +18,7 @@
 
 <!-- svelte-ignore a11y-no-static-element-interactions -->
 <div 
-  class="ono-container {audioSrc && "clickable"} {ipaScale > 1 && `scale-${ipaScale}`} {!colors && "no-color"}" 
+  class="ono-container {audioSrc && "clickable"} {disabled && "disabled"} {ipaScale > 1 && `scale-${ipaScale}`} {!colors && "no-color"}" 
   on:click={() => audioSrc && playIPAAudio(`audio/${audioSrc}.mp3`)}
   on:keydown={() => audioSrc && playIPAAudio(`audio/${audioSrc}.mp3`)}
 >
@@ -43,6 +44,10 @@
 
     &.clickable {
       cursor: pointer;
+    }
+
+    &.disabled {
+      opacity: 50%;
     }
 
     &.scale-2 {
