@@ -131,7 +131,7 @@
 		<h3>Sources</h3>
 		<ol>
 			{#each body.sources as source} 
-				<li><a href={source.link}>{source.name}</a></li>
+				<li><a href={source.link}>{source.name}</a>  ({source.source})</li>
 			{/each}
 		</ol>
 	</div>
