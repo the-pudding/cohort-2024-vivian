@@ -1,5 +1,5 @@
 <script>
-	import { getContext } from "svelte";
+	import { getContext, onMount } from "svelte";
 	import { browser } from "$app/environment";
 	import { blur } from 'svelte/transition';
 	import Scrolly from "$components/helpers/Scrolly.svelte";
@@ -39,9 +39,31 @@
 	}
 
 	$: if (browser) updateScrolly(scrollyValue);
+	
+	onMount(() => {
+		setTimeout(() => {scrollyValue = 0}, 100);
+	});
 </script>
 
 <section id="intro">
+	<div class="cover-overlay">
+		<div class="col">
+			<img src="assets/cat-face-logo.png" class="background-img img-1" alt="cat doodle"/>
+			<img src="assets/duck-2-purple.png" class="background-img img-2" alt="duck doodle"/>
+			<img src="assets/pig-face-logo.png" class="background-img img-3" alt="pig doodle"/>
+			<img src="assets/cat-2-orange.png" class="background-img img-1" alt="cat doodle"/>
+			<img src="assets/duck-face-2.png" class="background-img img-2" alt="duck doodle"/>
+			<img src="assets/pig-2-purple.png" class="background-img img-3" alt="pig doodle"/>
+		</div>
+		<div class="col">
+			<img src="assets/cat-2-pink.png" class="background-img img-3" alt="cat doodle"/>
+			<img src="assets/duck-face-2.png" class="background-img img-1" alt="duck doodle"/>
+			<img src="assets/pig-2-orange.png" class="background-img img-2" alt="pig doodle"/>
+			<img src="assets/cat-face-2.png" class="background-img img-3" alt="cat doodle"/>
+			<img src="assets/duck-2-pink.png" class="background-img img-1" alt="duck doodle"/>
+			<img src="assets/pig-face-2.png" class="background-img img-2" alt="pig doodle"/>
+		</div>
+	</div>
 	<div class="cover">
 		<div class="cover-content">
 			<div class="hed">
@@ -52,7 +74,7 @@
 			<div class="byline">by <a href={body.intro.bylineLink}>{body.intro.byline}</a></div>
 		</div>
 	</div>
-	<div class="body-content">
+	<div class="body-content" style="padding-bottom: 8em">
 		{#each body.intro.content as content}
 		 	{#if content.type === "text"}
 			<p class="graf">{@html content.value}</p>
@@ -230,6 +252,37 @@
 
 	#sources {
 		padding-bottom: 10em;
+	}
+
+
+	.cover-overlay {
+		position: absolute;
+		width: 100vw;
+		display: flex;
+		justify-content: space-between;
+		overflow: hidden;
+		
+		.col {
+			width: 36svh;
+		}
+
+		.background-img {
+			width: 15svh;
+			height: 15svh;
+			position: relative;
+		}
+		.img-1 {
+			transform: rotate(15deg);
+			left: 20.5svh;
+		}
+		.img-2 {
+			transform: rotate(-10deg);
+			left: 2svh;
+		}
+		.img-3 {
+			transform: rotate(25deg);
+			left: 12svh;
+		}
 	}
 
 	.scrolly-overlay-container {
