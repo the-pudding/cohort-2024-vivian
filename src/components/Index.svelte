@@ -181,7 +181,7 @@
 	.byline {
 		padding-top: 3em;
 		font-family: "Caveat", cursive;
-		font-size: 20px;
+		font-size: 24px;
 		color: var(--color-gray-500);
 		& a {
 			color: var(--color-gray-500);
