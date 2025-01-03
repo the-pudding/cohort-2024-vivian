@@ -89,7 +89,7 @@
 
 <section id="scrolly">
 	{#key currentFigureId}
-	<div class="scrolly-overlay-container" in:blur={{ delay: 400, duration: 800 }} out:blur={{ duration: 800 }}>
+	<div class="scrolly-overlay-container" in:blur={{ delay: 200, duration: 800 }} out:blur={{ duration: 800 }}>
 		{#if scrollyValue && currentFigureComponentProps?.display !== "cover"}
 		<div class="scrolly-overlay" in:blur={{ delay: 400, duration: 800 }} out:blur={{ duration: 800 }}>
 			<div class="animal-logo">

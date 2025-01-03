@@ -27,7 +27,8 @@
           let sumLetter = Object.entries(ipaColors).find(([key, value]) => value === letterColor)?.[0];
           if (sumLetter.includes("2")) {
             sumLetter = sumLetter.slice(0, -1);
-          } else if (sumLetter === "t") {
+          } 
+          if (sumLetter === "t") {
             sumLetter = "tʃ";
           }
           if (letterColor.includes("pink") && letterColor.includes("yellow")) {
