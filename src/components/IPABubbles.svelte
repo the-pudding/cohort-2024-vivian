@@ -124,9 +124,9 @@
       .attr("font-weight", "bold");
 
     node.append("text")
-      .html(d => d.count < 6 ? `<tspan>${d.count}</tspan>` : `<tspan>${d.count}</tspan> LANGUAGES`)
+      .html(d => d.count < 6 || width < 800 ? `<tspan>${d.count}</tspan>` : `<tspan>${d.count}</tspan> LANGUAGES`)
       .attr("class", "count-text")
-      .attr("y", d => (d.count * 8.5 + 16) * scaleFactor)
+      .attr("y", d => (d.count * 8.5 + 16) * scaleFactor + 4)
       .attr("text-anchor", "middle")
       .attr("font-size", "12px")
       .attr("fill", "var(--color-gray-700)");
@@ -162,7 +162,7 @@
         .attr("font-size", d => `${(d.count * 6 + 6) * scaleFactor}px`);
 
       select(svg).selectAll(".count-text")
-        .attr("y", d => (d.count * 8.5 + 16) * scaleFactor);
+        .attr("y", d => (d.count * 8.5 + 16) * 1.5 * scaleFactor);
 
     }
   }
