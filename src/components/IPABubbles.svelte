@@ -51,45 +51,52 @@
   let svg;
   let width;
   let height;
+  let scaleFactor;
   let container;
   let bbox;
 
-  $: {
-    if (svg) {
-      // Adjust the SVG size
-      // select(svg).attr("width", width).attr("height", height);
-      // select(svg).attr("preserveAspectRatio", "xMidYMid meet").attr("viewBox", "0 0 1280 1024")
-      select(svg)
-        .attr("width", width)
-        .attr("height", height);
-        // .attr("width", "100%") // Set SVG to fill the parent container
-        // .attr("height", "100%")
-        // .attr("viewBox", `0 0 ${width} ${height}`) // Define a scalable coordinate system
-        // .attr("viewBox", "0 0 1400 1024")
-        // .attr("preserveAspectRatio", "xMidYMid meet")
+  const aspectRatio = 0.75;
+    
+  // Add a scaling function for bubble sizes
+  function getScaleFactor(width) {
+    // Base scale for a "standard" width of 1000px
+    const baseWidth = 1100;
+    const scale = width / baseWidth;
+    // Clamp the scale between 0.5 and 1.5 to prevent extremes
+    return Math.min(Math.max(scale, 0.5), 1.5);
+  }
 
-      // Reconfigure simulation forces on resize
-      simulation.force("x", forceX(width / 2).strength(0.05));
-      simulation.force("y", forceY(height / 2).strength(0.08));
-      simulation.alpha(1).restart();
-    }
+  // Responsive sizing function
+  function updateSize() {
+    width = container.clientWidth;
+    // Set height based on aspect ratio, with a minimum height
+    height = Math.max(width * aspectRatio, 100);
+    scaleFactor = getScaleFactor(width);
   }
 
   let simulation;
-  
+
+  // Watch for container size changes
+  $: {
+    if (container) {
+      updateSize();
+    }
+  }
+
   onMount(() => {
+
+    // Initial size setup
+    updateSize();
+
     simulation = forceSimulation(bubbleData)
-      .force("x", forceX(width / 2).strength(0.05))
-      .force("y", forceY(height / 2).strength(0.08))
-      .force("collision", forceCollide(d => d.count * 9 + 12))
+      .force("x", forceX(width / 2).strength(width < 800 ? 0.08 : 0.05))
+      .force("y", forceY(height / 2).strength(width < 800 ? 0.05 : 0.08))
+      .force("collision", forceCollide(d => (d.count * 9 + 12) * scaleFactor))
       .on("tick", ticked);
 
     const svgElement = select(svg)
-      .attr("width", width)
-      .attr("height", height);
-      // .attr("viewBox", `0 0 ${width} ${height}`) // Define a scalable coordinate system
-      // .attr("viewBox", "0 0 1400 1024")
-      // .attr("preserveAspectRatio", "xMidYMid meet")
+      .attr("viewBox", `0 0 ${width} ${height}`)
+      .attr("preserveAspectRatio", "xMidYMid meet");
 
     const graphGroup = svgElement.append("g");
 
@@ -102,22 +109,24 @@
       .on("click", (event, d) => {playIPAAudio(`audio/ipa-${d.sumLetter}.mp3`);})
 
     node.append("circle")
-      .attr("r", d => d.count * 8 + 2) // Scale bubble size
+      .attr("r", d => (d.count * 8 + 2) * scaleFactor) // Scale bubble size
       .attr("fill", d => `var(--ipa-${d.color})`)
       .attr("stroke", d => `var(--ipa-${d.color}-stroke)`)
-      .attr("stroke-width", d => `${d.count * 0.05 + 1}px`);
+      .attr("stroke-width", d => `${(d.count * 0.05 + 1) * scaleFactor}px`);
 
     node.append("text")
       .text(d => d.sumLetter)
+      .attr("class", "ipa-letter")
       .attr("text-anchor", "middle")
       .attr("dominant-baseline", "middle")
-      .attr("font-size", d => `${d.count * 6 + 6}px`)
+      .attr("font-size", d => `${(d.count * 6 + 6) * scaleFactor}px`)
       .attr("font-family", "var(--font-ipa)")
       .attr("font-weight", "bold");
 
     node.append("text")
       .html(d => d.count < 6 ? `<tspan>${d.count}</tspan>` : `<tspan>${d.count}</tspan> LANGUAGES`)
-      .attr("y", d => d.count * 8.5 + 16)
+      .attr("class", "count-text")
+      .attr("y", d => (d.count * 8.5 + 16) * scaleFactor)
       .attr("text-anchor", "middle")
       .attr("font-size", "12px")
       .attr("fill", "var(--color-gray-700)");
@@ -131,6 +140,33 @@
     }, 1000);
   });
 
+  $: {
+    if (svg && width && height & simulation) {
+      select(svg)
+        .attr("viewBox", `0 0 ${width} ${height}`)
+        .attr("preserveAspectRatio", "xMidYMid meet");
+
+      simulation
+        .force("x", forceX(width / 2).strength(0.05))
+        .force("y", forceY(height / 2).strength(0.08))
+        .force("collision", forceCollide(d => (d.count * 9 + 12) * scaleFactor))
+        .alpha(1)
+        .restart();
+
+      // Update all scaled elements
+      select(svg).selectAll("circle")
+        .attr("r", d => (d.count * 8 + 2) * scaleFactor)
+        .attr("stroke-width", d => `${(d.count * 0.05 + 1) * scaleFactor}px`);
+
+      select(svg).selectAll(".ipa-letter")
+        .attr("font-size", d => `${(d.count * 6 + 6) * scaleFactor}px`);
+
+      select(svg).selectAll(".count-text")
+        .attr("y", d => (d.count * 8.5 + 16) * scaleFactor);
+
+    }
+  }
+
 </script>
 
 
@@ -141,33 +177,50 @@
   class="ipa-bubbles">
   <svg bind:this={svg}>
     {#if bbox}
-    <text class="ipa-chart-title" x="50%" y={bbox.y - 30} text-anchor="middle" transition:blur>Number of phone group occurences in {animal} sounds across 21 languages</text>
+    <foreignObject 
+      width={width} 
+      height=100 
+      x="0%" 
+      y={width < 600 ? bbox.y - 100 : (width < 800 ? bbox.y - 70 : bbox.y - 50 * scaleFactor)}>
+      <div 
+        class="ipa-chart-title" 
+        text-anchor="middle" 
+        style={`font-size: ${Math.max(20 * scaleFactor, 16)}px`} 
+        transition:blur>
+        Number of phone group occurences in {animal} sounds across 21 languages
+      </div>
+    </foreignObject>
     {/if}
   </svg>
 </div>
 
 <style lang="scss">
   .ipa-bubbles {
-    width: 100%; 
-    height: 100vh; 
+    width: 100%;
+    height: 100%;
+    min-height: 400px;
+    position: relative;
+		margin-top: 20px;
     overflow: hidden;
-    // display: inline-block;
-    // position: relative;
-    // width: 100%;
-    // padding-bottom: 100%;
-    // vertical-align: top;
-    // overflow: hidden;
   }
   svg {
-    display: block;
-    margin: 0 auto;
-    // display: inline-block;
-    // position: absolute;
-    // top: 0;
-    // left: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
   }
 
   :global(tspan) {
     font-weight: bold;
+  }
+  
+
+  .ipa-chart-title {
+    text-align: center;
+    @media screen and (max-width: 768px) {
+      margin: 2em;
+      max-width: 100%;
+    }
   }
 </style>

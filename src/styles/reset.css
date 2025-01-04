@@ -306,14 +306,32 @@ ol, ul {
 	}
 }
 
+.ipa-chart-title {
+	/* font-weight: bold; */
+	font-family: "IBM Plex Serif";
+	font-size: 1.2rem;
+}
+
+.ipa-chart-subtitle {
+	color: var(--color-gray-400);
+	margin: 0;
+	font-size: 15px;
+}
+
 .scrolly-cover {
 	display: flex;
-	gap: 1em;
+	column-gap: 1em;
 	align-items: center;
 }
 
 .scrolly-cover-hed {
 	font-size: 4rem;
 	font-family: "IBM Plex Serif";
-	/* color: var(--color-gray-700); */
+	margin: 0;
+}
+
+@media screen and (max-width: 550px) {
+	.scrolly-cover {
+		flex-direction: column;
+	}
 }

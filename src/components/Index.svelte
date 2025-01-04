@@ -149,6 +149,8 @@
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
+		max-width: 100%;
+		overflow: hidden;
 
 		.cover-content {
 			padding-bottom: 8em;
@@ -158,11 +160,15 @@
 
 	.hed {
 		display: flex;
-		gap: 16px;
+		flex-wrap: wrap;
+		justify-content: center;
+		align-items: center;
+		column-gap: 16px;
 		font-size: 3rem;
 
 		.hed-front {
 			font-family: "IBM Plex Serif";
+			margin: 0;
 		}
 
 		.hed-back {
@@ -176,6 +182,7 @@
 
 	.subhed {
 		font-size: 20px;
+		padding: 0 2em;
 	}
 
 	.byline {
@@ -190,7 +197,8 @@
 	}
 
 	.body-content {
-		width: 40em;
+		max-width: 40em;
+		padding: 0 2em;
 		margin: auto;
 		.graf:first-of-type::first-letter {
 			font-size: 4em;
@@ -214,6 +222,7 @@
 
 	p.scrolly-text {
 		padding: 1em;
+		margin: 16px;
 		border: 2px solid var(--color-gray-300);
 		min-width: min-content;
 		// white-space: nowrap;
@@ -231,7 +240,6 @@
 		left: 0;
 		width: 100%;
 		height: 100svh;
-		padding-top: 20px;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
@@ -297,12 +305,28 @@
 		width: 100vw;
 		padding: 0.5em 1.5em;
 		justify-content: space-between;
+
+		@media screen and (max-width: 768px) {
+			.g-ipa-chart-subtitle {
+				display: none;
+			}
+		}
 	}
 
 	.animal-logo {
 		display: flex;
 		gap: 0.5em;
 		align-items: center;
+
+		@media screen and (max-width: 768px) {
+			img {
+				width: 50px;
+				height: 50px;
+			} 
+			.scrolly-hed {
+				font-size: 1.5rem;
+			}
+		}
 	}
 
 	.scrolly-hed {
