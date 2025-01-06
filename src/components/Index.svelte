@@ -7,7 +7,7 @@
 	import Pig from "$components/Pig.svelte";
 	import Duck from "$components/Duck.svelte";
 	import IPA from "$components/IPA.svelte";
-	import volumeIcon from "$svg/volume-icon.svg";
+	import InlineAudio from "$components/InlineAudio.svelte";
 
 	const copy = getContext("copy");
 	let body = copy.body;
@@ -77,11 +77,11 @@
 	<div class="body-content" style="padding-bottom: 8em">
 		{#each body.intro.content as content}
 		 	{#if content.type === "text"}
-			<p class="graf">{@html content.value}</p>
-			{:else if content.type === "component"}
-				{#if content.value === "ipaCatExample"}
+			<span class="graf">{@html content.value}</span>
+			{:else if content.type === "ipaCatExample"}
 				<div style="padding: 1.5em"><IPA ipa="miaw" word="meow" lang="english" ipaScale=2/></div>
-				{/if}
+			{:else if content.type === "inlineAudio"}
+				<InlineAudio audioSrc={content.value.audioSrc} marginRight={content.value?.marginRight}>{@html content.value.slot}</InlineAudio>
 			{/if}
 		{/each}
 	</div>
@@ -96,7 +96,7 @@
 				<img src={`assets/${currentFigureId}-face-logo.png`} width=75 height=75 alt={`${currentFigureId} face doodle`}/>
 				<p class="scrolly-hed">{currentFigureId[0].toUpperCase() + currentFigureId.slice(1)}</p>
 			</div>
-			<div class="g-ipa-chart-subtitle"><p class="ipa-chart-subtitle">Click an element to hear it aloud</p>{@html volumeIcon}</div>
+			<div class="g-ipa-chart-subtitle"><p class="ipa-chart-subtitle">Click an element to hear it aloud</p></div>
 		</div>
 		{/if}
 	</div>
@@ -120,8 +120,12 @@
 
 <section id="outro">
 	<div class="body-content">
-		{#each body.outro.content as content} 
-			<p class="graf">{@html content.value}</p>
+		{#each body.outro.content as content}
+		 	{#if content.type === "text"}
+			<span class="graf">{@html content.value}</span>
+			{:else if content.type === "inlineAudio"}
+				<InlineAudio audioSrc={content.value.audioSrc} marginRight={content.value?.marginRight}>{@html content.value.slot}</InlineAudio>
+			{/if}
 		{/each}
 	</div>
 </section>
@@ -189,10 +193,10 @@
 		padding-top: 3em;
 		font-family: "Caveat", cursive;
 		font-size: 24px;
-		color: var(--color-gray-500);
+		color: var(--color-gray-600);
 		& a {
-			color: var(--color-gray-500);
-			text-decoration: 2px underline var(--color-gray-500, blue);
+			color: var(--color-gray-600);
+			text-decoration: 2px underline var(--color-gray-600, blue);
 		}
 	}
 
@@ -200,6 +204,7 @@
 		max-width: 40em;
 		padding: 0 2em;
 		margin: auto;
+		font-size: 18px;
 		.graf:first-of-type::first-letter {
 			font-size: 4em;
 			line-height: 1em;
@@ -222,6 +227,7 @@
 
 	p.scrolly-text {
 		padding: 1em;
+		font-size: 18px;
 		margin: 16px;
 		border: 2px solid var(--color-gray-300);
 		min-width: min-content;

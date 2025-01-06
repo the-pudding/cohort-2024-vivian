@@ -136,10 +136,10 @@
     &.hindi {
       font-family: "IBM Plex Sans Devanagari";
     }
-    font-size: 14px;
+    font-size: 15px;
   }
   .lang {
-    color: var(--color-gray-500);
+    color: var(--color-gray-600);
     font-size: 14px;
 ;  }
 </style>
