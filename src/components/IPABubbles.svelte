@@ -123,12 +123,33 @@
       .attr("font-family", "var(--font-ipa)")
       .attr("font-weight", "bold");
 
+    // volume icon
+    fetch('/assets/volume-icon.svg')
+      .then(response => response.text())
+      .then(svgContent => {
+        node.filter(d => d.count > 4)
+          .append("g")
+          .attr("class", "icon")
+          .attr("stroke", d => `var(--ipa-${d.color}-stroke)`)
+          .attr("transform", d => `translate(0, ${1.75 * d.count * getScaleFactor(width) + 20})`) // Position below text
+          .html(svgContent)
+          .each(function() {
+            const icon = select(this).select("svg");
+            icon
+              .attr("width", 16 * getScaleFactor(width))
+              .attr("height", 16 * getScaleFactor(width))
+              .attr("x", -8 * getScaleFactor(width))
+              .attr("y", -8 * getScaleFactor(width));
+          });
+      });
+
+
     node.append("text")
       .html(d => d.count < 6 || width < 800 ? `<tspan>${d.count}</tspan>` : `<tspan>${d.count}</tspan> LANGUAGES`)
       .attr("class", "count-text")
       .attr("y", d => (d.count * 8.5 + 16) * scaleFactor + 4)
       .attr("text-anchor", "middle")
-      .attr("font-size", "12px")
+      .attr("font-size", `${Math.max(13 * scaleFactor, 12)}px`)
       .attr("fill", "var(--color-gray-700)");
 
     function ticked() {

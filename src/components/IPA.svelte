@@ -1,11 +1,14 @@
 <script>
+	import volumeIcon from "$svg/volume-icon.svg";
+
   export let ipa;
   export let word = undefined;
   export let lang;
   export let colors = undefined;
-  export let audioSrc = undefined
+  export let audioSrc = undefined;
   export let ipaScale = 1;
   export let disabled = false;
+  export let showAudioIcon = true;
 
   let letters = ipa.split(/(?<![ˈ͡])(?<!r(?=ʲ))(?![̌ːɲ\d])/);
 
@@ -32,7 +35,12 @@
     {/each}
     <div>]</div>
   </div>
-  {#if lang}<div class="lang">{lang.toUpperCase()}</div>{/if}
+  <div class="lang-container">
+    {#if lang}<div class="lang">{lang.toUpperCase()}</div>{/if}
+    {#if showAudioIcon}
+      {@html volumeIcon}
+    {/if}
+  </div>
 </div>
 
 <style lang="scss">
@@ -138,8 +146,14 @@
     }
     font-size: 15px;
   }
+  .lang-container {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+  }
   .lang {
     color: var(--color-gray-600);
     font-size: 14px;
+    line-height: 1;
 ;  }
 </style>

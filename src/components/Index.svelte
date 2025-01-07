@@ -79,7 +79,7 @@
 		 	{#if content.type === "text"}
 			<span class="graf">{@html content.value}</span>
 			{:else if content.type === "ipaCatExample"}
-				<div style="padding: 1.5em"><IPA ipa="miaw" word="meow" lang="english" ipaScale=2/></div>
+				<div style="padding: 1.5em"><IPA ipa="miaw" word="meow" lang="english" ipaScale=2 audioSrc="cat-english"/></div>
 			{:else if content.type === "inlineAudio"}
 				<InlineAudio audioSrc={content.value.audioSrc} marginRight={content.value?.marginRight}>{@html content.value.slot}</InlineAudio>
 			{/if}
@@ -96,7 +96,7 @@
 				<img src={`assets/${currentFigureId}-face-logo.png`} width=75 height=75 alt={`${currentFigureId} face doodle`}/>
 				<p class="scrolly-hed">{currentFigureId[0].toUpperCase() + currentFigureId.slice(1)}</p>
 			</div>
-			<div class="g-ipa-chart-subtitle"><p class="ipa-chart-subtitle">Click an element to hear it aloud</p></div>
+			<!-- <div class="g-ipa-chart-subtitle"><p class="ipa-chart-subtitle">Click an element to hear it aloud</p></div> -->
 		</div>
 		{/if}
 	</div>
