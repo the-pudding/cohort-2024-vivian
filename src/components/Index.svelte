@@ -112,7 +112,21 @@
 		{#each body.scrolly.steps as { id, text }, i}
 			{@const active = scrollyValue === i}
 			<div data-id={id} class="step" class:active>
-				{#if text}<p class="scrolly-text">{@html text}</p>{/if}
+				{#if text}
+					{#if typeof text === 'string'}
+						<p class="scrolly-text">{@html text}</p>
+					{:else}
+					<p class="scrolly-text">
+						{#each text as textStr}
+							{#if textStr.type === "inlineAudio"}
+								<InlineAudio audioSrc={textStr.value.audioSrc} marginRight={textStr.value?.marginRight}>{@html textStr.value.slot}</InlineAudio>
+							{:else}
+								<span>{@html textStr.value}</span>
+							{/if}
+						{/each}
+					</p>
+					{/if}
+				{/if}
 			</div>
 		{/each}
 	</Scrolly>
@@ -225,7 +239,7 @@
 		padding-bottom: 100svh;
 	}
 
-	p.scrolly-text {
+	.scrolly-text {
 		padding: 1em;
 		font-size: 18px;
 		margin: 16px;
