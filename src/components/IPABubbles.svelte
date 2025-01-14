@@ -16,19 +16,21 @@
   }
 
   for (const ipaObj of ipaObjects) {
-    const letters = ipaObj.ipa.split(/(?<![ˈ͡])(?![̌ːɲʲ\d])/);
+    let letters = ipaObj.ipa.split(/(?<![ˈ͡])(?![̌ːɲʲ\d])/);
+    // letters = letters.filter((item, index) => letters.indexOf(item) === index);
+    let lettersCounted = [];
 
     for (const letter of letters) {
       let letterColor = ipaColors[letter];
+      let sumLetter = Object.entries(ipaColors).find(([key, value]) => value === letterColor)?.[0];
 
       if (letterColor) {
         if (!bubbleData.find((d) => d.color === letterColor)) {
           // create an object for this color
-          let sumLetter = Object.entries(ipaColors).find(([key, value]) => value === letterColor)?.[0];
           if (sumLetter.includes("2")) {
             sumLetter = sumLetter.slice(0, -1);
           } 
-          if (sumLetter === "t") {
+          if (animal === "duck" && sumLetter === "t") {
             sumLetter = "tʃ";
           }
           if (letterColor.includes("pink") && letterColor.includes("yellow")) {
@@ -40,9 +42,11 @@
           } else {
             bubbleData.push({ sumLetter: sumLetter, color: letterColor, count: 1 })
           }
+          lettersCounted.push(sumLetter);
         } else {
-            if (letter === "͡ʃ") { continue; }
-            bubbleData.find((d) => d.color === letterColor).count++;
+          if (letter === "͡ʃ" || lettersCounted.includes(sumLetter)) { continue; }
+          bubbleData.find((d) => d.color === letterColor).count++;
+          lettersCounted.push(sumLetter);
         }
       }
     }

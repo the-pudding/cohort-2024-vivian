@@ -6,8 +6,6 @@ export let pageColors; // array of colors that are on the slide page
 
 let activeObj; // object that is currently hovered over
 
-$: console.log(pageColors);
-
 const setActiveObj = (color) => {
   if (activeObj?.color !== color) {
     activeObj = phoneGroups.find((d) => d.color === color);
@@ -27,7 +25,7 @@ const setActiveObj = (color) => {
         on:mouseenter={() => pageColors.includes(phoneGroup.color) && setActiveObj(phoneGroup.color)} 
         on:mouseleave={() => pageColors.includes(phoneGroup.color) && setActiveObj("")}
         on:click={() => pageColors.includes(phoneGroup.color) && setActiveObj(phoneGroup.color)}>
-        <circle cx="10" cy="10" r="10" fill="var(--ipa-{phoneGroup.color})" opacity={!pageColors.includes(phoneGroup.color) && "0.25"}/>
+        <circle cx="10" cy="10" r="10" fill="var(--ipa-{phoneGroup.color})" opacity={!pageColors?.includes(phoneGroup.color) && "0.15"}/>
         <circle cx="10" cy="10" r="4" fill="var(--color-gray-800)" opacity={activeObj?.color === phoneGroup.color ? "1" : "0"}/>
       </g> 
     </svg>
@@ -54,8 +52,9 @@ const setActiveObj = (color) => {
 
 .legend-colors {
   display: flex;
+  flex-wrap: wrap;
   gap: 6px;
-  margin: 4px 0 12px 0;
+  margin: 4px 8px 12px 0;
 }
 
 .group-name {
