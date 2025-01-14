@@ -6,7 +6,7 @@ export let pageColors; // array of colors that are on the slide page
 
 let activeObj; // object that is currently hovered over
 
-$: console.log(activeObj);
+$: console.log(pageColors);
 
 const setActiveObj = (color) => {
   if (activeObj?.color !== color) {

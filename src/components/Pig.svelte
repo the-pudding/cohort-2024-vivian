@@ -6,6 +6,7 @@
 	import IPA from "$components/IPA.svelte";
 
 	export let display = "grid"; // "grid" | "bubbles"
+	export let pageColors;
 </script>
 
 {#if display === "cover"}

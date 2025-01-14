@@ -98,7 +98,9 @@
 				<p class="scrolly-hed">{currentFigureId[0].toUpperCase() + currentFigureId.slice(1)}</p>
 			</div>
 			<!-- <div class="g-ipa-chart-subtitle"><p class="ipa-chart-subtitle">Click an element to hear it aloud</p></div> -->
-			<Legend phoneGroups={copy.phoneGroups[currentFigureId]} pageColors={["pink", "yellow", "blue", "purple"]} />
+			<div class="legend-container">
+				<Legend phoneGroups={copy.phoneGroups[currentFigureId]} pageColors={currentFigureComponentProps?.pageColors} />
+			</div>
 		</div>
 		{/if}
 	</div>
@@ -331,6 +333,13 @@
 
 		@media screen and (max-width: 768px) {
 			.g-ipa-chart-subtitle {
+				display: none;
+			}
+		}
+
+		@media screen and (max-width: 1125px) {
+
+			.legend-container {
 				display: none;
 			}
 		}
