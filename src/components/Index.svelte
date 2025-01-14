@@ -8,6 +8,7 @@
 	import Duck from "$components/Duck.svelte";
 	import IPA from "$components/IPA.svelte";
 	import InlineAudio from "$components/InlineAudio.svelte";
+	import Legend from "$components/Legend.svelte";
 
 	const copy = getContext("copy");
 	let body = copy.body;
@@ -97,6 +98,7 @@
 				<p class="scrolly-hed">{currentFigureId[0].toUpperCase() + currentFigureId.slice(1)}</p>
 			</div>
 			<!-- <div class="g-ipa-chart-subtitle"><p class="ipa-chart-subtitle">Click an element to hear it aloud</p></div> -->
+			<Legend phoneGroups={copy.phoneGroups[currentFigureId]} pageColors={["pink", "yellow", "blue", "purple"]} />
 		</div>
 		{/if}
 	</div>
@@ -325,6 +327,7 @@
 		width: 100vw;
 		padding: 0.5em 1.5em;
 		justify-content: space-between;
+		align-items: start;
 
 		@media screen and (max-width: 768px) {
 			.g-ipa-chart-subtitle {

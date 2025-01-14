@@ -9,7 +9,7 @@
 
   let bubbleData = [];
 
-  function playIPAAudio(audioSrc) {
+  const playIPAAudio = (audioSrc) => {
     console.log("clicked");
     const audio = new Audio(audioSrc);
     audio.play();
@@ -58,7 +58,7 @@
   const aspectRatio = 0.75;
     
   // Add a scaling function for bubble sizes
-  function getScaleFactor(width) {
+  const getScaleFactor = (width)  => {
     // Base scale for a "standard" width of 1000px
     const baseWidth = 1100;
     const scale = width / baseWidth;
@@ -67,7 +67,7 @@
   }
 
   // Responsive sizing function
-  function updateSize() {
+  const updateSize = () => {
     width = container.clientWidth;
     // Set height based on aspect ratio, with a minimum height
     height = Math.max(width * aspectRatio, 100);
@@ -131,7 +131,7 @@
           .append("g")
           .attr("class", "icon")
           .attr("stroke", d => `var(--ipa-${d.color}-stroke)`)
-          .attr("transform", d => `translate(0, ${1.75 * d.count * getScaleFactor(width) + 20})`) // Position below text
+          .attr("transform", d => `translate(0, ${1.75 * d.count * getScaleFactor(width) + 20})`)
           .html(svgContent)
           .each(function() {
             const icon = select(this).select("svg");
