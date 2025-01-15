@@ -9,6 +9,7 @@
   export let ipaScale = 1;
   export let disabled = false;
   export let showAudioIcon = true;
+  export let ipaColumnDisplay = false;
 
   let letters = ipa.split(/(?<![ˈ͡])(?<!r(?=ʲ))(?![̌ːɲ\d])/);
 
@@ -21,7 +22,7 @@
 
 <!-- svelte-ignore a11y-no-static-element-interactions -->
 <div 
-  class="ono-container {audioSrc && "clickable"} {disabled && "disabled"} {ipaScale > 1 && `scale-${ipaScale}`} {!colors && "no-color"}" 
+  class="ono-container {audioSrc && "clickable"} {disabled && "disabled"} {ipaScale > 1 && `scale-${ipaScale}`} {!colors && "no-color"} {ipaColumnDisplay && "ipa-column-display"}" 
   on:click={() => audioSrc && playIPAAudio(`audio/${audioSrc}.mp3`)}
   on:keydown={() => audioSrc && playIPAAudio(`audio/${audioSrc}.mp3`)}
 >
@@ -56,6 +57,19 @@
 
     &.disabled {
       opacity: 50%;
+    }
+
+    &.ipa-column-display {
+      // display: flex;
+      // flex-direction: row-reverse;
+      // justify-content: start;
+      grid-template-columns: 1fr 1.5fr;
+      justify-items: start;
+      margin: 0;
+
+      .ipa-container {
+        order: 1;
+      }
     }
 
     &.scale-2 {

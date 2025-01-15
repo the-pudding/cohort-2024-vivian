@@ -65,4 +65,8 @@ const setActiveObj = (color) => {
   padding: 0 2px;
 }
 
+.legend-header {
+  font-size: 13px;
+}
+
 </style>

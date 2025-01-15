@@ -2,10 +2,11 @@
   import { onMount } from "svelte";
   import { select, forceSimulation, forceX, forceY, forceCollide } from "d3";
 	import { blur } from 'svelte/transition';
+	import IPAColumn from "$components/IPAColumn.svelte";
 
   export let ipaObjects;
   export let ipaColors;
-  export let animal
+  export let animal;
 
   let bubbleData = [];
 
@@ -59,7 +60,7 @@
   let container;
   let bbox;
 
-  const aspectRatio = 0.75;
+  const aspectRatio = width > 1500 ? 0.6 : 0.85;
     
   // Add a scaling function for bubble sizes
   const getScaleFactor = (width)  => {
@@ -200,6 +201,9 @@
   bind:clientHeight={height}
   bind:this={container}
   class="ipa-bubbles">
+  <div class="ipa-column-container">
+    <IPAColumn {animal} />
+  </div>
   <svg bind:this={svg}>
     {#if bbox}
     <foreignObject 
@@ -227,6 +231,7 @@
     position: relative;
 		margin-top: 20px;
     overflow: hidden;
+    display: flex;
   }
   svg {
     position: absolute;
@@ -247,5 +252,11 @@
       margin: 2em;
       max-width: 100%;
     }
+  }
+
+  .ipa-column-container {
+    display: flex;
+    align-items: center;
+    z-index: 10;
   }
 </style>
