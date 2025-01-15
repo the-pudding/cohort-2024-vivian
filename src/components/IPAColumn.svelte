@@ -3,13 +3,14 @@
 	import { getContext } from "svelte";
   
 	export let animal;
+  export let hoverGroupColor = undefined;
 
 	const copy = getContext("copy");
 </script>
 
 <div class="ipa-column">
 	{#each copy.animals[animal] as ipaObj}
-	<IPA ipa={ipaObj.ipa} lang={ipaObj.lang} colors={copy.ipaColors[animal]} audioSrc={`${animal}-${ipaObj.lang}`} ipaColumnDisplay={true} ipaScale={0.95}/>
+	<IPA ipa={ipaObj.ipa} lang={ipaObj.lang} colors={copy.ipaColors[animal]} audioSrc={`${animal}-${ipaObj.lang}`} ipaColumnDisplay={true} ipaScale={0.95} {hoverGroupColor}/>
 	{/each}
 </div>
 

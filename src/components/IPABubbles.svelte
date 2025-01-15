@@ -9,11 +9,15 @@
   export let animal;
 
   let bubbleData = [];
+  let hoverColor;
 
   const playIPAAudio = (audioSrc) => {
-    console.log("clicked");
     const audio = new Audio(audioSrc);
     audio.play();
+  }
+
+  const setHoverColor = (color) => {
+    hoverColor = color;
   }
 
   for (const ipaObj of ipaObjects) {
@@ -112,6 +116,8 @@
       .attr("class", "node")
       .attr("cursor", "pointer")
       .on("click", (event, d) => {playIPAAudio(`audio/ipa-${d.sumLetter}.mp3`);})
+      .on("mouseenter", (event, d) => {setHoverColor(d.color)})
+      .on("mouseleave", (event, d) => {setHoverColor(null)});
 
     node.append("circle")
       .attr("r", d => (d.count * 8 + 2) * scaleFactor) // Scale bubble size
@@ -202,7 +208,7 @@
   bind:this={container}
   class="ipa-bubbles">
   <div class="ipa-column-container">
-    <IPAColumn {animal} />
+    <IPAColumn {animal} hoverGroupColor={hoverColor}/>
   </div>
   <svg bind:this={svg}>
     {#if bbox}

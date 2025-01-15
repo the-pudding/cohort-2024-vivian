@@ -7,7 +7,7 @@
   export let colors = undefined;
   export let audioSrc = undefined;
   export let ipaScale = 1;
-  export let disabled = false;
+  export let hoverGroupColor = undefined;
   export let showAudioIcon = true;
   export let ipaColumnDisplay = false;
 
@@ -22,19 +22,19 @@
 
 <!-- svelte-ignore a11y-no-static-element-interactions -->
 <div 
-  class="ono-container {audioSrc && "clickable"} {disabled && "disabled"} {ipaScale > 1 && `scale-${ipaScale}`} {!colors && "no-color"} {ipaColumnDisplay && "ipa-column-display"}" 
+  class="ono-container {audioSrc && "clickable"} {ipaScale > 1 && `scale-${ipaScale}`} {!colors && "no-color"} {ipaColumnDisplay && "ipa-column-display"}" 
   on:click={() => audioSrc && playIPAAudio(`audio/${audioSrc}.mp3`)}
   on:keydown={() => audioSrc && playIPAAudio(`audio/${audioSrc}.mp3`)}
 >
   {#if lang && word}<div class="word {lang}">{word}</div>{/if}
   <div class="ipa-container" style={`transform:scale(${ipaScale})`}>
-    <div>[</div>
+    <div style={hoverGroupColor && "opacity: 0.2; transition: 0.3s"}>[</div>
     {#each letters as letter}
-      <div class="ipa-letter {colors && colors[letter]}">
+      <div class="ipa-letter {colors && colors[letter]} {hoverGroupColor && (!colors[letter]?.includes(hoverGroupColor) || colors[letter]?.includes(hoverGroupColor + "-")) ? "disabled" : ""}">
         {letter.replace(/[0-9]/g, '')}
       </div>
     {/each}
-    <div>]</div>
+    <div style={hoverGroupColor && "opacity: 0.2; transition: 0.3s"}>]</div>
   </div>
   <div class="lang-container">
     {#if lang}<div class="lang">{lang.toUpperCase()}</div>{/if}
@@ -55,14 +55,7 @@
       cursor: pointer;
     }
 
-    &.disabled {
-      opacity: 50%;
-    }
-
     &.ipa-column-display {
-      // display: flex;
-      // flex-direction: row-reverse;
-      // justify-content: start;
       grid-template-columns: 1fr 1.5fr;
       justify-items: start;
       margin: 0;
@@ -105,6 +98,11 @@
   .ipa-letter {
     height: 1.15em;
     line-height: 1.05;
+    transition: 0.3s;
+
+    &.disabled {
+      opacity: 0.2;
+    }
     &.pink {
       background-color: var(--ipa-pink);
     }
