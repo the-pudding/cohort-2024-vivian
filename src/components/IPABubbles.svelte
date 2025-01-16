@@ -264,5 +264,9 @@
     display: flex;
     align-items: center;
     z-index: 10;
+
+    @media screen and (max-width: 1100px) {
+      display: none;
+    }
   }
 </style>
