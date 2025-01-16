@@ -4,7 +4,7 @@
 export let phoneGroups; // object of phone groups for the animal
 export let pageColors; // array of colors that are on the slide page
 
-let activeObj; // object that is currently hovered over
+export let activeObj; // object that is currently hovered over
 
 const setActiveObj = (color) => {
   if (activeObj?.color !== color) {
@@ -34,12 +34,12 @@ const setActiveObj = (color) => {
     <!-- <div>{phoneGroups}</div> -->
   </div>
   {#key activeObj}
-  <div class="legend-description" in:fade={{ delay: 250, duration: 250 }} out:fade={{ duration: 250 }}>
-  {#if activeObj}
-    <div class="group-name" style="background-color: var(--ipa-{activeObj.color}">{activeObj.groupName}</div>
-    <div class="group-def">{activeObj.groupDef}</div>
-  {/if}
-</div>
+    <div class="legend-description" in:fade={{ delay: 250, duration: 250 }} out:fade={{ duration: 250 }}>
+    {#if activeObj}
+      <div class="group-name" style="background-color: var(--ipa-{activeObj.color}">{activeObj.groupName}</div>
+      <div class="group-def">{activeObj.groupDef}</div>
+    {/if}
+    </div>
   {/key}
 </div>
 
@@ -48,6 +48,15 @@ const setActiveObj = (color) => {
 .legend {
   padding-top: 1em;
   width: 13em;
+  // background-color: rgba(255, 255, 255, 0.5);
+  // background: 
+  //   linear-gradient(to bottom, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0)) 50% 0%,
+  //   linear-gradient(to top, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0)) 50% 100%,
+  //   linear-gradient(to right, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0)) 0% 50%,
+  //   linear-gradient(to left, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0)) 100% 50%;
+  // background-size: 100% 50%, 100% 50%, 50% 100%, 50% 100%;
+  // background-repeat: no-repeat;
+  
 }
 
 .legend-colors {
@@ -67,6 +76,10 @@ const setActiveObj = (color) => {
 
 .legend-header {
   font-size: 13px;
+}
+
+.group-def {
+  background-color: rgba(255, 255, 255, 1);
 }
 
 </style>

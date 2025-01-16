@@ -164,6 +164,7 @@
     align-items: center;
   }
   .lang {
+    white-space: nowrap;
     color: var(--color-gray-600);
     font-size: 14px;
     line-height: 1;

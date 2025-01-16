@@ -20,6 +20,7 @@
 	let currentFigureComponent;
 	let currentFigureId;
 	let currentFigureComponentProps;
+	let scrollyActiveObj;
 
 	function updateScrolly() {
 		if (scrollyValue === undefined) { 
@@ -97,9 +98,8 @@
 				<img src={`assets/${currentFigureId}-face-logo.png`} width=75 height=75 alt={`${currentFigureId} face doodle`}/>
 				<p class="scrolly-hed">{currentFigureId[0].toUpperCase() + currentFigureId.slice(1)}</p>
 			</div>
-			<!-- <div class="g-ipa-chart-subtitle"><p class="ipa-chart-subtitle">Click an element to hear it aloud</p></div> -->
 			<div class="legend-container">
-				<Legend phoneGroups={copy.phoneGroups[currentFigureId]} pageColors={currentFigureComponentProps?.pageColors} />
+				<Legend phoneGroups={copy.phoneGroups[currentFigureId]} pageColors={currentFigureComponentProps?.pageColors} activeObj={scrollyActiveObj}/>
 			</div>
 		</div>
 		{/if}
@@ -124,6 +124,15 @@
 						{#each text as textStr}
 							{#if textStr.type === "inlineAudio"}
 								<InlineAudio audioSrc={textStr.value.audioSrc} marginRight={textStr.value?.marginRight}>{@html textStr.value.slot}</InlineAudio>
+							{:else if textStr.type === "inlinePhoneGroup"}
+								<span 
+									class="highlight-{textStr.value.color}"
+									on:mouseenter={() => {scrollyActiveObj = copy.phoneGroups[currentFigureId].find((d) => d.color === textStr.value.color)}}
+									on:mouseleave={() => {scrollyActiveObj = null}}
+									style="display: inline-block;{textStr.value.marginLeft && "margin-left: 4px;"} {textStr.value.marginRight && "margin-right: 4px;"}"
+									>
+									<b>{textStr.value.groupName}</b>
+								</span>
 							{:else}
 								<span>{@html textStr.value}</span>
 							{/if}
@@ -386,7 +395,7 @@
 		display: inline-block;
 		padding: 0 1px;
 	}
-	:global(.highlight-pink50) {
+	:global(.highlight-pink-50) {
 		background-color: var(--ipa-pink-50);
 		line-height: 1.1;
 		display: inline-block;
