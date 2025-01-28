@@ -107,7 +107,7 @@
 	{/key}
 	{#key currentFigureComponentProps}
 	<figure 
-		in:blur={{ delay: 400, duration: 800 }} out:blur={{ duration: 800}}
+		in:blur={{ delay: 350, duration: 700 }} out:blur={{ duration: 700}}
 		class={currentFigureComponentProps?.display === "cover" && `${currentFigureId}-background`}>
 		<svelte:component this={currentFigureComponent} {...currentFigureComponentProps}/>
 	</figure>
@@ -129,7 +129,7 @@
 									class="highlight-{textStr.value.color}"
 									on:mouseenter={() => {scrollyActiveObj = copy.phoneGroups[currentFigureId].find((d) => d.color === textStr.value.color)}}
 									on:mouseleave={() => {scrollyActiveObj = null}}
-									style="display: inline-block;{textStr.value.marginLeft && "margin-left: 4px;"} {textStr.value.marginRight && "margin-right: 4px;"}"
+									style="display: inline-block;cursor: pointer;{textStr.value.marginLeft && "margin-left: 4px;"} {textStr.value.marginRight && "margin-right: 4px;"}"
 									>
 									<b>{textStr.value.groupName}</b>
 								</span>
@@ -264,6 +264,7 @@
 		background-color: var(--color-bg);
 		box-shadow: 0 4px 16px rgba(135, 135, 135, 0.3);
 		max-width: 32em;
+		display: inline-block;
 		text-align: center;
 	}
 
@@ -298,8 +299,9 @@
 
 	.cover-overlay {
 		position: absolute;
-		width: 100vw;
+		width: 100%;
 		display: flex;
+		pointer-events: none;
 		justify-content: space-between;
 		overflow: hidden;
 		
