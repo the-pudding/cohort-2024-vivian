@@ -265,7 +265,7 @@
 		box-shadow: 0 4px 16px rgba(135, 135, 135, 0.3);
 		max-width: 32em;
 		display: inline-block;
-		text-align: center;
+		// text-align: center;
 	}
 
 	figure {
