@@ -186,6 +186,10 @@
 		.cover-content {
 			padding-bottom: 8em;
 			text-align: center;
+
+			@media screen and (max-width: 1000px) {
+				padding-top: 4em;
+			}
 		}
 	}
 
@@ -196,6 +200,7 @@
 		align-items: center;
 		column-gap: 16px;
 		font-size: 3rem;
+		padding: 0 1em;
 
 		.hed-front {
 			font-family: "IBM Plex Serif";
@@ -208,6 +213,10 @@
 			// font-family: "IBM Plex Serif";
 			background-color: var(--ipa-yellow);
 			padding: 0px 4px;
+		}
+
+		@media screen and (max-width: 500px) {
+			font-size: 2.5em;
 		}
 	}
 
@@ -294,6 +303,10 @@
 
 	#sources {
 		padding-bottom: 10em;
+
+		@media screen and (max-width: 800px) {
+			padding-bottom: 4em;
+		}
 	}
 
 
@@ -325,6 +338,47 @@
 		.img-3 {
 			transform: rotate(25deg);
 			left: 12svh;
+		}
+
+		@media screen and (max-width: 1000px) {
+			height: calc(100svh - 100px);
+			flex-direction: column;
+
+			.col {
+				width: auto;
+				display: flex;
+				justify-content: space-between;
+				height: 20svh;
+			}
+
+			.background-img {
+				left: auto !important;
+			}
+			
+			.img-1 {
+				top: 5svh;
+			}
+			.img-3 {
+				top: 2svh;
+			}
+		}
+
+		@media screen and (max-width: 700px) {
+			.col {
+				height: 15svh;
+			}
+
+			.background-img {
+				width: 10svh;
+				height: 10svh;
+			}
+		}
+
+		@media screen and (max-width: 500px) {
+			.col {
+				justify-content: center;
+				gap: 8px;
+			}
 		}
 	}
 

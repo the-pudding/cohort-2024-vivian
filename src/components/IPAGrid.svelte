@@ -34,6 +34,26 @@
 		grid-gap: var(--grid-layout-gap);
 		width: 100vw;
 		padding: 1.5em 3em;
+
+		@media screen and (max-width: 600px) {
+			--grid-item--min-width: 125px;
+			padding: 1em;
+			transform: scale(0.9);
+		}
+		@media screen and (max-width: 415px) {
+			--grid-item--min-width: 110px;
+			transform: scale(0.85);
+		}
+
+		@media screen and (max-width: 370px) {
+			--grid-item--min-width: 95px;
+		}
+	}
+
+	@media screen and (max-width: 600px) {
+		.ipa-chart-title {
+			display: none;
+		}
 	}
 
 </style>

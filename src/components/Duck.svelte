@@ -71,7 +71,7 @@
 	{:else if display === "grid-detail-4.5"}
 	{@const ipaDuckObjects = copy.animals.duck.filter((d) => d?.patterns?.includes("detail-4"))}
 	{@const ipaCatObjects = copy.animals.cat.filter((d) => d?.patterns?.includes("detail-3"))}
-	<div class="two-col small-gap">
+	<div class="two-col small-gap pair-display">
 		<div style="padding: 2em 0 0 8em"><IPA ipa="kwak2" lang="english + 3 others" colors={copy.ipaColors.duck} audioSrc="duck-english" ipaScale=2.5/></div>
 		<div class="flex-wrap">
 			{#each ipaDuckObjects as ipaObj}
@@ -79,7 +79,7 @@
 			{/each}
 		</div>
 	</div>
-	<div class="two-col small-gap" style="margin-top: 8em">
+	<div class="two-col small-gap pair-display" style="margin-top: 8em">
 		<div style="padding: 2em 0 0 4em"><IPA ipa="miau" lang="english + 14 others" colors={copy.ipaColors.cat} audioSrc="cat-english" ipaScale=2.5/></div>
 		<div class="flex-wrap">
 			{#each ipaCatObjects as ipaObj}

@@ -85,6 +85,11 @@
     &.scale-1\.25 {
       gap: 0.6em;
     }
+
+    @media screen and (max-width: 800px) {
+      transform: scale(0.8);
+      margin: 0;
+    }
   }
   
   .ipa-container {
