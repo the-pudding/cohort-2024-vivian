@@ -6,8 +6,8 @@
 /* colors defined in variables.css */
 :root {
 	/* font */
-	--sans: "Atlas Grotesk", -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
-	--serif: "Tiempos Text Web", Iowan Old Style, Times New Roman, Times, serif;
+	--sans: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
+	--serif: "IBM Plex Serif", Iowan Old Style, Times New Roman, Times, serif;
 	--mono: Menlo, Consolas, Monaco, monospace;
 
 	/* z-index */
