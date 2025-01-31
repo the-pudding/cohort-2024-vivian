@@ -19,7 +19,8 @@
 	/* presets (used in reset.css) */
 	--border-radius: 2px;
 	--font-body: "IBM Plex Sans", serif;
-	--font-ipa: "Charis SIL", serif;
+	--font-ipa: "Charis SIL", var(--serif);
+	--font-hindi: "IBM Plex Sans Devanagari", var(--sans);
 	--font-form: var(--sans);
 	--color-bg: var(--color-white);
 	--color-fg: var(--color-gray-900);

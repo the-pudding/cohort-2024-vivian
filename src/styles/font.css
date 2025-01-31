@@ -1,35 +1,50 @@
+/* charis-sil-700 - latin */
 @font-face {
-	font-family: "Atlas Grotesk";
-	src: url("https://pudding.cool/assets/fonts/atlas/AtlasGrotesk-Regular-Web.woff2") format("woff2");
-	font-weight: 400;
-	font-style: normal;
-	font-stretch: normal;
-	font-display: swap;
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: 'Charis SIL';
+  font-style: normal;
+  font-weight: 700;
+  src: url('https://pudding.cool/assets/fonts/charis-sil/charis-sil-v2-latin-700.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
 
+/* ibm-plex-sans-regular - latin */
 @font-face {
-	font-family: "Atlas Grotesk";
-	src: url("https://pudding.cool/assets/fonts/atlas/AtlasGrotesk-Bold-Web.woff2") format("woff2");
-	font-weight: 700;
-	font-style: normal;
-	font-stretch: normal;
-	font-display: swap;
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: 'IBM Plex Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: url('https://pudding.cool/assets/fonts/ibm-plex-sans/ibm-plex-sans-v19-latin-regular.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+/* ibm-plex-sans-700 - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: 'IBM Plex Sans';
+  font-style: normal;
+  font-weight: 700;
+  src: url('https://pudding.cool/assets/fonts/ibm-plex-sans/ibm-plex-sans-v19-latin-700.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+/* ibm-plex-serif-regular - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: 'IBM Plex Serif';
+  font-style: normal;
+  font-weight: 400;
+  src: url('https://pudding.cool/assets/fonts/ibm-plex-serif/ibm-plex-serif-v19-latin-regular.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+/* ibm-plex-serif-700 - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: 'IBM Plex Serif';
+  font-style: normal;
+  font-weight: 700;
+  src: url('https://pudding.cool/assets/fonts/ibm-plex-serif/ibm-plex-serif-v19-latin-700.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
 
+/* ibm-plex-sans-devanagari-700 - latin */
 @font-face {
-	font-family: "Tiempos Text";
-	src: url("https://pudding.cool/assets/fonts/tiempos/TiemposTextWeb-Regular.woff2") format("woff2");
-	font-weight: 400;
-	font-style: normal;
-	font-stretch: normal;
-	font-display: swap;
-}
-
-@font-face {
-	font-family: "Tiempos Text";
-	src: url("https://pudding.cool/assets/fonts/tiempos/TiemposTextWeb-Bold.woff2") format("woff2");
-	font-weight: 700;
-	font-style: normal;
-	font-stretch: normal;
-	font-display: swap;
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: 'IBM Plex Sans Devanagari';
+  font-style: normal;
+  font-weight: 700;
+  src: url('https://pudding.cool/assets/fonts/ibm-plex-sans-devanagari/ibm-plex-sans-devanagari-v11-latin-700.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
