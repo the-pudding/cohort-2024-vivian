@@ -11,10 +11,11 @@
 	version();
 
 	const preloadFont = [
-		"https://pudding.cool/assets/fonts/tiempos/TiemposTextWeb-Regular.woff2",
-		"https://pudding.cool/assets/fonts/tiempos/TiemposTextWeb-Bold.woff2",
-		"https://pudding.cool/assets/fonts/atlas/AtlasGrotesk-Regular-Web.woff2",
-		"https://pudding.cool/assets/fonts/atlas/AtlasGrotesk-Bold-Web.woff2"
+		"https://pudding.cool/assets/fonts/charis-sil/charis-sil-v2-latin-700.woff2",
+		"https://pudding.cool/assets/fonts/ibm-plex-sans/ibm-plex-sans-v19-latin-regular.woff2",
+		"https://pudding.cool/assets/fonts/ibm-plex-sans/ibm-plex-sans-v19-latin-700.woff2",
+		"https://pudding.cool/assets/fonts/ibm-plex-serif/ibm-plex-serif-v19-latin-regular.woff2",
+		"https://pudding.cool/assets/fonts/ibm-plex-serif/ibm-plex-serif-v19-latin-700.woff2"
 	];
 
 	const { title, description, url, keywords } = copy;
