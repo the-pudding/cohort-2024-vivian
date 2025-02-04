@@ -257,6 +257,10 @@
 		justify-content: center;
 	}
 
+	.step:first-child {
+		padding-bottom: 0svh;
+	}
+
 	.step:last-child {
 		padding-bottom: 100svh;
 	}
