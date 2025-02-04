@@ -117,42 +117,68 @@
 		}
 		&.pink {
 			background-color: var(--ipa-pink);
+      border-top: 2px solid var(--ipa-pink-stroke);
+      border-bottom: 2px solid var(--ipa-pink-stroke);
 		}
 		&.orange {
 			background-color: var(--ipa-orange);
+      border-top: 2px solid var(--ipa-orange-stroke);
+      border-bottom: 2px solid var(--ipa-orange-stroke);
 		}
 		&.yellow {
 			background-color: var(--ipa-yellow);
+      border-top: 2px solid var(--ipa-yellow-stroke);
+      border-bottom: 2px solid var(--ipa-yellow-stroke);
 		}
 		&.green {
 			background-color: var(--ipa-green);
+      border-top: 2px solid var(--ipa-green-stroke);
+      border-bottom: 2px solid var(--ipa-green-stroke);
 		}
 		&.blue {
 			background-color: var(--ipa-blue);
+      border-top: 2px solid var(--ipa-blue-stroke);
+      border-bottom: 2px solid var(--ipa-blue-stroke);
 		}
 		&.indigo {
 			background-color: var(--ipa-indigo);
+      border-top: 2px solid var(--ipa-indigo-stroke);
+      border-bottom: 2px solid var(--ipa-indigo-stroke);
 		}
 		&.purple {
 			background-color: var(--ipa-purple);
+      border-top: 2px solid var(--ipa-purple-stroke);
+      border-bottom: 2px solid var(--ipa-purple-stroke);
 		}
 		&.brown {
 			background-color: var(--ipa-brown);
+      border-top: 2px solid var(--ipa-brown-stroke);
+      border-bottom: 2px solid var(--ipa-brown-stroke);
 		}
 		&.seafoam {
 			background-color: var(--ipa-seafoam);
+      border-top: 2px solid var(--ipa-seafoam-stroke);
+      border-bottom: 2px solid var(--ipa-seafoam-stroke);
 		}
 		&.stone {
 			background-color: var(--ipa-stone);
+      border-top: 2px solid var(--ipa-stone-stroke);
+      border-bottom: 2px solid var(--ipa-stone-stroke);
 		}
 		&.pink-50 {
 			background-color: var(--ipa-pink-50);
+      border-top: 2px solid var(--ipa-pink-50-stroke);
+      border-bottom: 2px solid var(--ipa-pink-50-stroke);
 		}
 		&.purple-50 {
 			background-color: var(--ipa-purple-50);
+      border-top: 2px solid var(--ipa-purple-50-stroke);
+      border-bottom: 2px solid var(--ipa-purple-50-stroke);
 		}
 		&.indigo-50 {
 			background-color: var(--ipa-indigo-50);
+      border-top: 2px solid var(--ipa-indigo-50-stroke);
+      border-bottom: 2px solid var(--ipa-indigo-50-stroke);
 		}
 		&.pink75-yellow25 {
 			background: linear-gradient(
@@ -160,6 +186,15 @@
 				var(--ipa-pink) 78%,
 				var(--ipa-yellow) 22%
 			);
+      border-image: linear-gradient(
+				to right,
+				var(--ipa-pink-stroke) 78%,
+				var(--ipa-yellow-stroke) 22%
+			) 1;
+      border-image-width: 2px 0;
+      border-left: 0;
+      border-right: 0;
+      border-style: solid;
 		}
 		&.pink50-yellow50 {
 			background: linear-gradient(
@@ -167,6 +202,15 @@
 				var(--ipa-pink) 50%,
 				var(--ipa-yellow) 50%
 			);
+      border-image: linear-gradient(
+				to right,
+				var(--ipa-pink-stroke) 50%,
+				var(--ipa-yellow-stroke) 50%
+			) 1;
+      border-image-width: 2px 0;
+      border-left: 0;
+      border-right: 0;
+      border-style: solid;
 		}
 		&.green75-yellow25 {
 			background: linear-gradient(
@@ -174,6 +218,15 @@
 				var(--ipa-green) 78%,
 				var(--ipa-yellow) 22%
 			);
+      border-image: linear-gradient(
+				to right,
+				var(--ipa-green-stroke) 78%,
+				var(--ipa-yellow-stroke) 22%
+			) 1;
+      border-image-width: 2px 0;
+      border-left: 0;
+      border-right: 0;
+      border-style: solid;
 		}
 	}
 	.word {
