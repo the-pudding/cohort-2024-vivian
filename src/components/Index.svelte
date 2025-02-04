@@ -1,7 +1,7 @@
 <script>
 	import { getContext, onMount } from "svelte";
 	import { browser } from "$app/environment";
-	import { blur } from 'svelte/transition';
+	import { blur } from "svelte/transition";
 	import Scrolly from "$components/helpers/Scrolly.svelte";
 	import Cat from "$components/Cat.svelte";
 	import Pig from "$components/Pig.svelte";
@@ -16,54 +16,106 @@
 
 	// scrolly variables
 	let scrollyValue;
-	let components = {cat: Cat, pig: Pig, duck: Duck};
+	let components = { cat: Cat, pig: Pig, duck: Duck };
 	let currentFigureComponent;
 	let currentFigureId;
 	let currentFigureComponentProps;
 	let scrollyActiveObj;
 
 	function updateScrolly() {
-		if (scrollyValue === undefined) { 
-
+		if (scrollyValue === undefined) {
 			currentFigureComponent = undefined;
 			currentFigureId = undefined;
 			currentFigureComponentProps = undefined;
 
-			return; 
+			return;
 		}
 		const selector = `.step:nth-of-type(${scrollyValue + 1})`;
 		const id = document.querySelector(selector).getAttribute("data-id");
 		currentFigureComponent = components[id];
 		currentFigureId = id;
-		if (currentFigureComponentProps?.display !== body.scrolly.steps[scrollyValue].props?.display) {
+		if (
+			currentFigureComponentProps?.display !==
+			body.scrolly.steps[scrollyValue].props?.display
+		) {
 			currentFigureComponentProps = body.scrolly.steps[scrollyValue].props;
 		}
 	}
 
 	$: if (browser) updateScrolly(scrollyValue);
-	
+
 	onMount(() => {
-		setTimeout(() => {scrollyValue = 0}, 100);
+		setTimeout(() => {
+			scrollyValue = 0;
+		}, 100);
 	});
 </script>
 
 <section id="intro">
 	<div class="cover-overlay">
 		<div class="col">
-			<img src="assets/cat-face-logo.png" class="background-img img-1" alt="cat doodle"/>
-			<img src="assets/duck-2-purple.png" class="background-img img-2" alt="duck doodle"/>
-			<img src="assets/pig-face-logo.png" class="background-img img-3" alt="pig doodle"/>
-			<img src="assets/cat-2-orange.png" class="background-img img-1" alt="cat doodle"/>
-			<img src="assets/duck-face-2.png" class="background-img img-2" alt="duck doodle"/>
-			<img src="assets/pig-2-purple.png" class="background-img img-3" alt="pig doodle"/>
+			<img
+				src="assets/cat-face-logo.png"
+				class="background-img img-1"
+				alt="cat doodle"
+			/>
+			<img
+				src="assets/duck-2-purple.png"
+				class="background-img img-2"
+				alt="duck doodle"
+			/>
+			<img
+				src="assets/pig-face-logo.png"
+				class="background-img img-3"
+				alt="pig doodle"
+			/>
+			<img
+				src="assets/cat-2-orange.png"
+				class="background-img img-1"
+				alt="cat doodle"
+			/>
+			<img
+				src="assets/duck-face-2.png"
+				class="background-img img-2"
+				alt="duck doodle"
+			/>
+			<img
+				src="assets/pig-2-purple.png"
+				class="background-img img-3"
+				alt="pig doodle"
+			/>
 		</div>
 		<div class="col">
-			<img src="assets/cat-2-pink.png" class="background-img img-3" alt="cat doodle"/>
-			<img src="assets/duck-face-2.png" class="background-img img-1" alt="duck doodle"/>
-			<img src="assets/pig-2-orange.png" class="background-img img-2" alt="pig doodle"/>
-			<img src="assets/cat-face-2.png" class="background-img img-3" alt="cat doodle"/>
-			<img src="assets/duck-2-pink.png" class="background-img img-1" alt="duck doodle"/>
-			<img src="assets/pig-face-2.png" class="background-img img-2" alt="pig doodle"/>
+			<img
+				src="assets/cat-2-pink.png"
+				class="background-img img-3"
+				alt="cat doodle"
+			/>
+			<img
+				src="assets/duck-face-2.png"
+				class="background-img img-1"
+				alt="duck doodle"
+			/>
+			<img
+				src="assets/pig-2-orange.png"
+				class="background-img img-2"
+				alt="pig doodle"
+			/>
+			<img
+				src="assets/cat-face-2.png"
+				class="background-img img-3"
+				alt="cat doodle"
+			/>
+			<img
+				src="assets/duck-2-pink.png"
+				class="background-img img-1"
+				alt="duck doodle"
+			/>
+			<img
+				src="assets/pig-face-2.png"
+				class="background-img img-2"
+				alt="pig doodle"
+			/>
 		</div>
 	</div>
 	<div class="cover">
@@ -73,17 +125,31 @@
 				<p class="hed-back">{hedArr[1]}</p>
 			</div>
 			<p class="subhed">{body.intro.subhed}</p>
-			<div class="byline">by <a href={body.intro.bylineLink}>{body.intro.byline}</a></div>
+			<div class="byline">
+				by <a href={body.intro.bylineLink}>{body.intro.byline}</a>
+			</div>
 		</div>
 	</div>
 	<div class="body-content" style="padding-bottom: 8em">
 		{#each body.intro.content as content}
-		 	{#if content.type === "text"}
-			<span class="graf">{@html content.value}</span>
+			{#if content.type === "text"}
+				<span class="graf">{@html content.value}</span>
 			{:else if content.type === "ipaCatExample"}
-				<div style="padding: 1.5em"><IPA ipa="miaw" word="meow" lang="english" ipaScale=2 audioSrc="cat-english"/></div>
+				<div style="padding: 1.5em">
+					<IPA
+						ipa="miaw"
+						word="meow"
+						lang="english"
+						ipaScale="2"
+						audioSrc="cat-english"
+					/>
+				</div>
 			{:else if content.type === "inlineAudio"}
-				<InlineAudio audioSrc={content.value.audioSrc} marginRight={content.value?.marginRight}>{@html content.value.slot}</InlineAudio>
+				<InlineAudio
+					audioSrc={content.value.audioSrc}
+					marginRight={content.value?.marginRight}
+					>{@html content.value.slot}</InlineAudio
+				>
 			{/if}
 		{/each}
 	</div>
@@ -91,53 +157,90 @@
 
 <section id="scrolly">
 	{#key currentFigureId}
-	<div class="scrolly-overlay-container" in:blur={{ delay: 200, duration: 800 }} out:blur={{ duration: 800 }}>
-		{#if scrollyValue && currentFigureComponentProps?.display !== "cover"}
-		<div class="scrolly-overlay" in:blur={{ delay: 400, duration: 800 }} out:blur={{ duration: 800 }}>
-			<div class="animal-logo">
-				<img src={`assets/${currentFigureId}-face-logo.png`} width=75 height=75 alt={`${currentFigureId} face doodle`}/>
-				<p class="scrolly-hed">{currentFigureId[0].toUpperCase() + currentFigureId.slice(1)}</p>
-			</div>
-			<div class="legend-container">
-				<Legend phoneGroups={copy.phoneGroups[currentFigureId]} pageColors={currentFigureComponentProps?.pageColors} activeObj={scrollyActiveObj}/>
-			</div>
+		<div
+			class="scrolly-overlay-container"
+			in:blur={{ delay: 200, duration: 800 }}
+			out:blur={{ duration: 800 }}
+		>
+			{#if scrollyValue && currentFigureComponentProps?.display !== "cover"}
+				<div
+					class="scrolly-overlay"
+					in:blur={{ delay: 400, duration: 800 }}
+					out:blur={{ duration: 800 }}
+				>
+					<div class="animal-logo">
+						<img
+							src={`assets/${currentFigureId}-face-logo.png`}
+							width="75"
+							height="75"
+							alt={`${currentFigureId} face doodle`}
+						/>
+						<p class="scrolly-hed">
+							{currentFigureId[0].toUpperCase() + currentFigureId.slice(1)}
+						</p>
+					</div>
+					<div class="legend-container">
+						<Legend
+							phoneGroups={copy.phoneGroups[currentFigureId]}
+							pageColors={currentFigureComponentProps?.pageColors}
+							activeObj={scrollyActiveObj}
+						/>
+					</div>
+				</div>
+			{/if}
 		</div>
-		{/if}
-	</div>
 	{/key}
 	{#key currentFigureComponentProps}
-	<figure 
-		in:blur={{ delay: 350, duration: 700 }} out:blur={{ duration: 700}}
-		class={currentFigureComponentProps?.display === "cover" && `${currentFigureId}-background`}>
-		<svelte:component this={currentFigureComponent} {...currentFigureComponentProps}/>
-	</figure>
+		<figure
+			in:blur={{ delay: 350, duration: 700 }}
+			out:blur={{ duration: 700 }}
+			class={currentFigureComponentProps?.display === "cover" &&
+				`${currentFigureId}-background`}
+		>
+			<svelte:component
+				this={currentFigureComponent}
+				{...currentFigureComponentProps}
+			/>
+		</figure>
 	{/key}
 	<Scrolly bind:value={scrollyValue}>
 		{#each body.scrolly.steps as { id, text }, i}
 			{@const active = scrollyValue === i}
 			<div data-id={id} class="step" class:active>
 				{#if text}
-					{#if typeof text === 'string'}
+					{#if typeof text === "string"}
 						<p class="scrolly-text">{@html text}</p>
 					{:else}
-					<p class="scrolly-text">
-						{#each text as textStr}
-							{#if textStr.type === "inlineAudio"}
-								<InlineAudio audioSrc={textStr.value.audioSrc} marginRight={textStr.value?.marginRight}>{@html textStr.value.slot}</InlineAudio>
-							{:else if textStr.type === "inlinePhoneGroup"}
-								<span 
-									class="highlight-{textStr.value.color}"
-									on:mouseenter={() => {scrollyActiveObj = copy.phoneGroups[currentFigureId].find((d) => d.color === textStr.value.color)}}
-									on:mouseleave={() => {scrollyActiveObj = null}}
-									style="display: inline-block;cursor: pointer;{textStr.value.marginLeft && "margin-left: 4px;"} {textStr.value.marginRight && "margin-right: 4px;"}"
+						<p class="scrolly-text">
+							{#each text as textStr}
+								{#if textStr.type === "inlineAudio"}
+									<InlineAudio
+										audioSrc={textStr.value.audioSrc}
+										marginRight={textStr.value?.marginRight}
+										>{@html textStr.value.slot}</InlineAudio
 									>
-									<b>{textStr.value.groupName}</b>
-								</span>
-							{:else}
-								<span>{@html textStr.value}</span>
-							{/if}
-						{/each}
-					</p>
+								{:else if textStr.type === "inlinePhoneGroup"}
+									<span
+										class="highlight-{textStr.value.color}"
+										on:mouseenter={() => {
+											scrollyActiveObj = copy.phoneGroups[currentFigureId].find(
+												(d) => d.color === textStr.value.color
+											);
+										}}
+										on:mouseleave={() => {
+											scrollyActiveObj = null;
+										}}
+										style="display: inline-block;cursor: pointer;{textStr.value
+											.marginLeft && 'margin-left: 4px;'} {textStr.value
+											.marginRight && 'margin-right: 4px;'}"
+									>
+										<b>{textStr.value.groupName}</b>
+									</span>
+								{:else}
+									<span>{@html textStr.value}</span>
+								{/if}
+							{/each}
+						</p>
 					{/if}
 				{/if}
 			</div>
@@ -148,10 +251,14 @@
 <section id="outro">
 	<div class="body-content">
 		{#each body.outro.content as content}
-		 	{#if content.type === "text"}
-			<span class="graf">{@html content.value}</span>
+			{#if content.type === "text"}
+				<span class="graf">{@html content.value}</span>
 			{:else if content.type === "inlineAudio"}
-				<InlineAudio audioSrc={content.value.audioSrc} marginRight={content.value?.marginRight}>{@html content.value.slot}</InlineAudio>
+				<InlineAudio
+					audioSrc={content.value.audioSrc}
+					marginRight={content.value?.marginRight}
+					>{@html content.value.slot}</InlineAudio
+				>
 			{/if}
 		{/each}
 	</div>
@@ -161,19 +268,18 @@
 	<div class="body-content">
 		<h3>Sources</h3>
 		<ol>
-			{#each body.sources as source} 
-				<li><a href={source.link}>{source.name}</a>  ({source.source})</li>
+			{#each body.sources as source}
+				<li><a href={source.link}>{source.name}</a> ({source.source})</li>
 			{/each}
 		</ol>
 	</div>
 </section>
 
-
 <style lang="scss">
 	section {
 		position: relative;
 	}
-	
+
 	.cover {
 		height: calc(100svh - 2em);
 		display: flex;
@@ -209,8 +315,6 @@
 
 		.hed-back {
 			font-weight: bold;
-			// font-family: var(--font-ipa);
-			// font-family: "IBM Plex Serif";
 			background-color: var(--ipa-yellow);
 			padding: 0px 4px;
 		}
@@ -227,8 +331,7 @@
 
 	.byline {
 		padding-top: 3em;
-		font-family: "Caveat", cursive;
-		font-size: 24px;
+		font-size: 20px;
 		color: var(--color-gray-600);
 		& a {
 			color: var(--color-gray-600);
@@ -291,7 +394,7 @@
 		flex-direction: column;
 		align-items: center;
 		justify-content: center;
-		
+
 		&.cat-background {
 			background-color: rgba(107, 196, 255, 0.2);
 		}
@@ -313,7 +416,6 @@
 		}
 	}
 
-
 	.cover-overlay {
 		position: absolute;
 		width: 100%;
@@ -321,7 +423,7 @@
 		pointer-events: none;
 		justify-content: space-between;
 		overflow: hidden;
-		
+
 		.col {
 			width: 36svh;
 		}
@@ -358,7 +460,7 @@
 			.background-img {
 				left: auto !important;
 			}
-			
+
 			.img-1 {
 				top: 5svh;
 			}
@@ -407,7 +509,6 @@
 		}
 
 		@media screen and (max-width: 1125px) {
-
 			.legend-container {
 				display: none;
 			}
@@ -423,7 +524,7 @@
 			img {
 				width: 50px;
 				height: 50px;
-			} 
+			}
 			.scrolly-hed {
 				font-size: 1.5rem;
 			}
@@ -444,7 +545,7 @@
 	}
 
 	:global(.inline-ipa) {
-		font-family: var(--font-ipa);	
+		font-family: var(--font-ipa);
 		font-weight: bold;
 		white-space: nowrap;
 	}
