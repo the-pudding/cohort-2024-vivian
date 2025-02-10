@@ -46,6 +46,7 @@
 		);
 		grid-gap: var(--grid-layout-gap);
 		width: 100vw;
+		width: 100%;
 		padding: 1.5em 3em;
 
 		@media screen and (max-width: 600px) {
