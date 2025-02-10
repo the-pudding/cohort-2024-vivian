@@ -43,12 +43,6 @@
 	}
 
 	$: if (browser) updateScrolly(scrollyValue);
-
-	onMount(() => {
-		setTimeout(() => {
-			scrollyValue = 0;
-		}, 100);
-	});
 </script>
 
 <section id="intro">

@@ -12,7 +12,7 @@
 
 	const preloadFont = [
 		"https://pudding.cool/assets/fonts/charis-sil/charis-sil-v2-latin-700.woff2",
-		"https://pudding.cool/assets/fonts/ibm-plex-sans/ibm-plex-sans-v19-latin-regular.woff2",
+		"https://pudding.cool/assets/fonts/ibm-plex-sans/ibm-plex-sans-v19-latin-300.woff2",
 		"https://pudding.cool/assets/fonts/ibm-plex-sans/ibm-plex-sans-v19-latin-700.woff2",
 		"https://pudding.cool/assets/fonts/ibm-plex-serif/ibm-plex-serif-v19-latin-regular.woff2",
 		"https://pudding.cool/assets/fonts/ibm-plex-serif/ibm-plex-serif-v19-latin-700.woff2"
