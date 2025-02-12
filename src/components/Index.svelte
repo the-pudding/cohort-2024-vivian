@@ -1,5 +1,5 @@
 <script>
-	import { getContext, onMount } from "svelte";
+	import { getContext } from "svelte";
 	import { browser } from "$app/environment";
 	import { blur } from "svelte/transition";
 	import Scrolly from "$components/helpers/Scrolly.svelte";
@@ -124,7 +124,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="body-content" style="padding-bottom: 8em">
+	<div class="body-content">
 		{#each body.intro.content as content}
 			{#if content.type === "text"}
 				<span class="graf">{@html content.value}</span>
@@ -347,6 +347,17 @@
 		}
 	}
 
+	#intro .body-content {
+		padding-bottom: 48em;
+		@media screen and (max-width: 900px) {
+			padding-bottom: 24em;
+		}
+	}
+	
+	#outro .body-content {
+		padding-top: 85svh;
+	}
+
 	.step {
 		padding-top: 50svh;
 		padding-bottom: 50svh;
@@ -355,11 +366,7 @@
 	}
 
 	.step:first-child {
-		padding-bottom: 0svh;
-	}
-
-	.step:last-child {
-		padding-bottom: 100svh;
+		padding-top: 0svh;
 	}
 
 	.scrolly-text {
@@ -379,11 +386,11 @@
 	}
 
 	figure {
-		position: sticky;
+		position: fixed;
 		top: 0;
 		left: 0;
 		width: 100%;
-		height: 100svh;
+		height: 100vh;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
