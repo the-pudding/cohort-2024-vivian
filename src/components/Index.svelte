@@ -8,6 +8,7 @@
 	import Duck from "$components/Duck.svelte";
 	import IPA from "$components/IPA.svelte";
 	import InlineAudio from "$components/InlineAudio.svelte";
+	import Footer from "$components/Footer.svelte";
 	import Legend from "$components/Legend.svelte";
 
 	const copy = getContext("copy");
@@ -269,6 +270,8 @@
 	</div>
 </section>
 
+<Footer></Footer>
+
 <style lang="scss">
 	section {
 		position: relative;
@@ -353,7 +356,7 @@
 			padding-bottom: 24em;
 		}
 	}
-	
+
 	#outro .body-content {
 		padding-top: 85svh;
 	}

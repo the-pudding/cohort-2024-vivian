@@ -80,6 +80,8 @@
 		font-family: var(--sans);
 		padding: 3em 1em;
 		margin-top: 3em;
+		position: relative;
+		z-index: 999999999;
 	}
 
 	a,
@@ -119,6 +121,10 @@
 	.wordmark {
 		max-width: 10em;
 		margin: 1em auto;
+	}
+
+	:global(footer .wordmark svg) {
+		fill: var(--color-bg);
 	}
 
 	.about {
