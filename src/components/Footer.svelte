@@ -1,7 +1,7 @@
 <script>
 	import { onMount } from "svelte";
 	import inView from "$actions/inView.js";
-	import wordmark from "$svg/wordmark.svg";
+	import wordmark from "$svg/wordmark-bubble.svg";
 
 	let localURL;
 	let stories = [];
