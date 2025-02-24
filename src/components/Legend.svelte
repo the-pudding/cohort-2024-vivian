@@ -25,7 +25,7 @@ const setActiveObj = (color) => {
         on:mouseenter={() => pageColors.includes(phoneGroup.color) && setActiveObj(phoneGroup.color)} 
         on:mouseleave={() => pageColors.includes(phoneGroup.color) && setActiveObj("")}
         on:click={() => pageColors.includes(phoneGroup.color) && setActiveObj(phoneGroup.color)}>
-        <circle cx="10" cy="10" r="10" fill="var(--ipa-{phoneGroup.color})" opacity={!pageColors?.includes(phoneGroup.color) && "0.15"}/>
+        <circle cx="10" cy="10" r="9" fill="var(--ipa-{phoneGroup.color})" stroke="var(--ipa-{phoneGroup.color}-stroke)" stroke-width="2px" opacity={!pageColors?.includes(phoneGroup.color) && "0.15"}/>
         <circle cx="10" cy="10" r="4" fill="var(--color-gray-800)" opacity={activeObj?.color === phoneGroup.color ? "1" : "0"}/>
       </g> 
     </svg>
