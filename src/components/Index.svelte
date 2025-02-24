@@ -189,8 +189,9 @@
 		<figure
 			in:blur={{ delay: 350, duration: 700 }}
 			out:blur={{ duration: 700 }}
-			class={currentFigureComponentProps?.display === "cover" &&
+			class="{currentFigureComponentProps?.display === "cover" &&
 				`${currentFigureId}-background`}
+				{!scrollyValue? "inactive" : ""}"
 		>
 			<svelte:component
 				this={currentFigureComponent}
@@ -409,6 +410,10 @@
 
 		&.duck-background {
 			background-color: rgba(255, 159, 81, 0.2);
+		}
+
+		&.inactive {
+			pointer-events: none;
 		}
 	}
 
