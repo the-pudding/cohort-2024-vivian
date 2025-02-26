@@ -162,7 +162,7 @@
 			.then((response) => response.text())
 			.then((svgContent) => {
 				node
-					.filter((d) => d.count > 4)
+					.filter((d) => width < 600 ? d.count > 7 : d.count > 4)
 					.append("g")
 					.attr("class", "icon")
 					.attr("stroke", (d) => `var(--ipa-${d.color}-stroke)`)
@@ -175,10 +175,10 @@
 					.each(function () {
 						const icon = select(this).select("svg");
 						icon
-							.attr("width", 16 * getScaleFactor(width))
-							.attr("height", 16 * getScaleFactor(width))
-							.attr("x", -8 * getScaleFactor(width))
-							.attr("y", -8 * getScaleFactor(width));
+							.attr("width", 16 * getScaleFactor(width) * (width < 600 ? "1.8" : "1"))
+							.attr("height", 16 * getScaleFactor(width) * (width < 600 ? "1.8" : "1"))
+							.attr("x", -8 * getScaleFactor(width) * (width < 600 ? "1.8" : "1"))
+							.attr("y", -8 * getScaleFactor(width) * (width < 600 ? "4" : "1"));
 					});
 			});
 
