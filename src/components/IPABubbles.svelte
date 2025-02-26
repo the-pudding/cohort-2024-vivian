@@ -250,7 +250,7 @@
 		{#if bbox}
 			<foreignObject
 				{width}
-				height="100"
+				height="75"
 				x="0%"
 				y={width < 600
 					? bbox.y - 100
@@ -280,6 +280,10 @@
 		margin-top: 20px;
 		overflow: hidden;
 		display: flex;
+
+		@media screen and (max-width: 900px) {
+			margin-top: 5em;
+		}
 	}
 	svg {
 		position: absolute;
@@ -287,6 +291,10 @@
 		left: 0;
 		width: 100%;
 		height: 100%;
+
+		@media screen and (max-width: 768px) {
+			top: 1em;
+		}
 	}
 
 	:global(tspan) {
@@ -296,7 +304,7 @@
 	.ipa-chart-title {
 		text-align: center;
 		@media screen and (max-width: 768px) {
-			margin: 2em;
+			margin: 0em 2em;
 			max-width: 100%;
 		}
 	}
