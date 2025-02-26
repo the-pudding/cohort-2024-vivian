@@ -27,8 +27,7 @@ mark {
 }
 
 a {
-	color: var(--ipa-pink, blue);
-	text-decoration: 2px underline var(--ipa-pink, blue);
+	color: var(--ipa-pink-link, blue);
 }
 
 
