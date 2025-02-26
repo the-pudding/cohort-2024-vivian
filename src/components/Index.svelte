@@ -367,6 +367,11 @@
 		padding-bottom: 50svh;
 		display: flex;
 		justify-content: center;
+
+		@media screen and (max-width: 700px) {
+			padding-top: 65svh;
+			padding-bottom: 65svh;
+		}
 	}
 
 	.step:first-child {
@@ -414,6 +419,10 @@
 
 		&.inactive {
 			pointer-events: none;
+		}
+
+		@media screen and (max-width: 900px) {
+			height: 100%;
 		}
 	}
 
