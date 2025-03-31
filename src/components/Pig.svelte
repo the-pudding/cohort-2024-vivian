@@ -21,16 +21,22 @@
 {:else if display === "grid-detail-1"}
 {@const ipaAObjects = copy.animals.pig.filter((d) => d?.patterns?.includes("detail-1a"))}
 {@const ipaBObjects = copy.animals.pig.filter((d) => d?.patterns?.includes("detail-1b"))}
+{@const ipaCObjects = copy.animals.pig.filter((d) => d?.patterns?.includes("detail-1c"))}
 <div class="two-col small-gap">
 	<div style="padding: 2em 0 0 8em"><IPA ipa="oink" lang="trend" colors={copy.ipaColors.pig} audioSrc="pig-english" ipaScale=2.5/></div>
 	<div>
-		<div class="flex-wrap" style="padding-bottom: 8em">
+		<div class="flex-wrap" style="padding-bottom: 4em">
 			{#each ipaAObjects as ipaObj}
 			<div class="flex-child third"><IPA ipa={ipaObj.ipa} word={ipaObj.word} lang={ipaObj.lang} colors={copy.ipaColors.pig} audioSrc={`pig-${ipaObj.lang}`}/></div>
 			{/each}
 		</div>
-		<div class="flex-wrap">
+		<div class="flex-wrap" style="padding-bottom: 4em">
 			{#each ipaBObjects as ipaObj}
+			<div class="flex-child third"><IPA ipa={ipaObj.ipa} word={ipaObj.word} lang={ipaObj.lang} colors={copy.ipaColors.pig} audioSrc={`pig-${ipaObj.lang}`}/></div>
+			{/each}
+		</div>
+		<div class="flex-wrap">
+			{#each ipaCObjects as ipaObj}
 			<div class="flex-child third"><IPA ipa={ipaObj.ipa} word={ipaObj.word} lang={ipaObj.lang} colors={copy.ipaColors.pig} audioSrc={`pig-${ipaObj.lang}`}/></div>
 			{/each}
 		</div>
